@@ -14,7 +14,19 @@ namespace StudentStorage.WPF.ViewModels
         {
             this.Students = new ObservableCollection<StudentViewModel>();
         }
+        public GroupViewModel(Group<int, Student> group)
+        {
+            this.Name = group.GroupName;
+            this.Students = new ObservableCollection<StudentViewModel>();
+            foreach(var student in group)
+            {
+                StudentViewModel s = new StudentViewModel(student.Value);
+                s.Key = student.Key;
+                this.Students.Add(s);
+            }
+        }
         public string Name { get; set; }
+        public int Key { get; set; }
         public ObservableCollection<StudentViewModel> Students { get; set; }
     }
 }

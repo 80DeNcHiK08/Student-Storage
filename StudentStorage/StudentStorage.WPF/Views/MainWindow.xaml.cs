@@ -25,7 +25,56 @@ namespace StudentStorage.WPF.Views
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public BinaryTree<int, Faculty<int, Group<int, Student>>> Collection { get; set; } = new BinaryTree<int, Faculty<int, Group<int, Student>>>();
-        public List<FacultyViewModel> CollectionView { get; set; }
+        private List<FacultyViewModel> _CollectionView = new List<FacultyViewModel>();
+        public List<FacultyViewModel> CollectionView
+        {
+            get { return _CollectionView; }
+            set
+            {
+                _CollectionView = value;
+                OnPropertyChanged("CollectionView");
+            }
+        }
+        private List<FacultyViewModel> _CollectionSResultsView = new List<FacultyViewModel>();
+        public List<FacultyViewModel> CollectionSResultsView
+        {
+            get { return _CollectionSResultsView; }
+            set
+            {
+                _CollectionSResultsView = value;
+                OnPropertyChanged("CollectionSResultsView");
+            }
+        }
+        private StudentViewModel _SelectedStudent;
+        public StudentViewModel SelectedStudent
+        {
+            get { return _SelectedStudent; }
+            set
+            {
+                _SelectedStudent = value;
+                OnPropertyChanged("SelectedStudent");
+            }
+        }
+        private GroupViewModel _SelectedGroup;
+        public GroupViewModel SelectedGroup
+        {
+            get { return _SelectedGroup; }
+            set
+            {
+                _SelectedGroup = value;
+                OnPropertyChanged("SelectedGroup");
+            }
+        }
+        private FacultyViewModel _SelectedFaculty;
+        public FacultyViewModel SelectedFaculty
+        {
+            get { return _SelectedFaculty; }
+            set
+            {
+                _SelectedFaculty = value;
+                OnPropertyChanged("SelectedFaculty");
+            }
+        }
         private DateTime CurrentDate = DateTime.Now;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,69 +88,58 @@ namespace StudentStorage.WPF.Views
             InitializeComponent();
             DataContext = this;
 
-            Random rand = new Random();
+            #region testing values
             //Testing
-            Student[] students = new Student[10];
-            Group<int, Student> group = new Group<int, Student>("Group 1");
-            for(int i = 0; i < 10; i++)
-            {
-                students[i] = new Student("LName" + i, "FName" + i, "SName" + i, CurrentDate, float.Parse((50 + rand.NextDouble() * 50).ToString()));
-                group.Add(students[i]);
-            }
-            Faculty<int, Group<int, Student>> faculty = new Faculty<int, Group<int, Student>>("Faculty 1");
-            faculty.Add(group);
-            Collection.Add(faculty);
+            Random rand = new Random();
+            Faculty<int, Group<int, Student>> f1 = new Faculty<int, Group<int, Student>>("Faculty 1");
+            Faculty<int, Group<int, Student>> f2 = new Faculty<int, Group<int, Student>>("Faculty 2");
+            Group<int, Student>[] groups = new Group<int, Student>[5];
 
-            CollectionView = new List<FacultyViewModel>()
+            for(int j = 0; j < groups.Length; j++)
             {
-                new FacultyViewModel()
+                groups[j] = new Group<int, Student>("Group " + j);
+                int count = rand.Next(3, 12);
+                for (int i = 0; i < count; i++)
                 {
-                    Name = "Faculty 1",
-                    Groups = new ObservableCollection<GroupViewModel>()
-                    {
-                        new GroupViewModel()
-                        {
-                            Name = "Group 1.1",
-                            Students = new ObservableCollection<StudentViewModel>()
-                            {
-                                new StudentViewModel(students[0]),
-                                new StudentViewModel(students[1]),
-                                new StudentViewModel(students[2])
-                            }
-                        },
-                        new GroupViewModel()
-                        {
-                            Name = "Group 1.2",
-                            Students = new ObservableCollection<StudentViewModel>()
-                            {
-                                new StudentViewModel(students[3]),
-                                new StudentViewModel(students[4]),
-                                new StudentViewModel(students[5]),
-                                new StudentViewModel(students[6])
-                            }
-                        }
-                    }
-                },
-                new FacultyViewModel()
-                {
-                    Name = "Faculty 2",
-                    Groups = new ObservableCollection<GroupViewModel>()
-                    {
-                        new GroupViewModel()
-                        {
-                            Name = "Group 2.2",
-                            Students = new ObservableCollection<StudentViewModel>()
-                            {
-                                new StudentViewModel(students[7]),
-                                new StudentViewModel(students[8]),
-                                new StudentViewModel(students[9])
-                            }
-                        }
-                    }
+                    DateTime start = new DateTime(1997, 1, 1);
+                    DateTime end = new DateTime(2001, 1, 1);
+                    int range = (end - start).Days;
+                    DateTime birthdate = start.AddDays(rand.Next(range));
+                    Student s = new Student("FName" + i, "LName" + i, "SName" + i, birthdate, float.Parse((50 + rand.NextDouble() * 50).ToString()));
+                    groups[j].Add(i, s);
                 }
-            };
+            }
 
+            f1.Add(0, groups[0]);
+            f1.Add(1, groups[1]);
+            f1.Add(2,groups[2]);
+            f2.Add(3,groups[3]);
+            f2.Add(4,groups[4]);
+
+            Collection.Add(0, f1);
+            Collection.Add(1, f2);
+
+            CollectionView = new List<FacultyViewModel>();
+            foreach(var c in Collection)
+            {
+                FacultyViewModel f = new FacultyViewModel(c.Value);
+                f.Key = c.Key;
+                CollectionView.Add(f);
+            }
+            #endregion
+            
             TreeViewAll.ItemsSource = CollectionView;
+            TreeViewSResult.ItemsSource = CollectionSResultsView;
+        }
+
+        private void TreeViewSelected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateView()
+        {
+
         }
 
         private void Save(object sender, RoutedEventArgs e)
@@ -126,6 +164,7 @@ namespace StudentStorage.WPF.Views
             aboutPage.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
             aboutPage.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
             aboutPage.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
             aboutPage.Show();
         }
 
@@ -141,6 +180,7 @@ namespace StudentStorage.WPF.Views
             settingsPage.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
             settingsPage.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
             settingsPage.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
             settingsPage.Show();
         }
 
@@ -192,7 +232,59 @@ namespace StudentStorage.WPF.Views
 
         private void DeleteAll(object sender, RoutedEventArgs e)
         {
+            Collection.Clear();
+            CollectionView.Clear();
+            CollectionSResultsView.Clear();
+            TreeViewAll.ItemsSource = TreeViewSResult.ItemsSource = null;
+        }
 
+        private void Find(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if(((System.Windows.Controls.TextBox)sender).Text == string.Empty)
+            {
+                TreeViewSResult.ItemsSource = null;
+                return;
+            }
+            CollectionSResultsView = new List<FacultyViewModel>();
+            bool hasStudRes = false, hasGroupRes = false;
+
+            foreach (var faculty in CollectionView)
+            {
+                FacultyViewModel fvm = new FacultyViewModel();
+                fvm.Name = faculty.Name;
+                foreach (var group in faculty.Groups)
+                {
+                    GroupViewModel gvm = new GroupViewModel();
+                    gvm.Name = group.Name;
+                    foreach (var student in group.Students)
+                    {
+                        if (student.ConcatedName.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))
+                        {
+                            gvm.Students.Add(student);
+                            hasStudRes = true;
+                        }
+                    }
+                    if(hasStudRes)
+                    {
+                        fvm.Groups.Add(gvm);
+                        continue;
+                    }
+                    if (group.Name.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))
+                    {
+                        fvm.Groups.Add(gvm);
+                    }
+                }
+                if(hasGroupRes || hasStudRes)
+                {
+                    CollectionSResultsView.Add(fvm);
+                    continue;
+                }
+                if (faculty.Name.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))
+                {
+                    CollectionSResultsView.Add(fvm);
+                }
+            }
+            TreeViewSResult.ItemsSource = CollectionSResultsView;
         }
     }
 

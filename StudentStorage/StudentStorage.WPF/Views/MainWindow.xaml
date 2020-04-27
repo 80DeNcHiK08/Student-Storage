@@ -40,14 +40,14 @@
         </Menu>
 
         <StackPanel Grid.Row="1" Margin="10, 0" Height="Auto">
-            <TreeView Height="160" Margin="0, 5" x:Name="TreeViewAll" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+            <TreeView Height="160" Margin="0, 5" x:Name="TreeViewAll" TreeViewItem.Selected="TreeViewSelected" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Name}"/>
                             <TextBlock Text=" [" Foreground="Blue"/>
                             <TextBlock Text="{Binding Groups.Count}" Foreground="Blue"/>
-                            <TextBlock Text="]" Foreground="Blue"/>
+                            <TextBlock Text=" groups]" Foreground="Blue"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:GroupViewModel}" ItemsSource="{Binding Students}">
@@ -55,7 +55,7 @@
                             <TextBlock Text="{Binding Name}"/>
                             <TextBlock Text=" [" Foreground="Blue"/>
                             <TextBlock Text="{Binding Students.Count}" Foreground="Blue"/>
-                            <TextBlock Text="]" Foreground="Blue"/>
+                            <TextBlock Text=" students]" Foreground="Blue"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type vm:StudentViewModel}">
@@ -63,7 +63,9 @@
                             <TextBlock Text="{Binding ConcatedName}"/>
                             <TextBlock Text=" (" Foreground="Blue"/>
                             <TextBlock Text="{Binding Age}" Foreground="Blue"/>
-                            <TextBlock Text=" years old)" Foreground="Blue"/>
+                            <TextBlock Text=" years old) " Foreground="Blue"/>
+                            <TextBlock Text="AM: " Foreground="Red"/>
+                            <TextBlock Text="{Binding AM}" Foreground="Red"/>
                         </StackPanel>
                     </DataTemplate>
                 </TreeView.Resources>
@@ -86,19 +88,38 @@
             </Grid>
 
             <Label Content="Type to search: " FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-            <TextBox Margin="0,5" Height="30" BorderBrush="{DynamicResource BorderColor}" VerticalContentAlignment="Center" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            <TextBox Margin="0,5" Height="30" TextChanged="Find" BorderBrush="{DynamicResource BorderColor}" VerticalContentAlignment="Center" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
 
             <Label Content="Results: " FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-            <TreeView Height="160" Margin="0, 5" x:Name="TreeViewSResult" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
-                <!--<TreeViewItem Header="Faculty">
-                    <TreeViewItem Header="Group">
-                        <TreeViewItem Header="Student">
-                            <Label Content="Birth date: "/>
-                            <Label Content="Average mark: "/>
-                            <Label Content="Soolarship: "/>
-                        </TreeViewItem>
-                    </TreeViewItem>
-                </TreeViewItem>-->
+            <TreeView Height="160" Margin="0, 5" x:Name="TreeViewSResult" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text=" [" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Groups.Count}" Foreground="Blue"/>
+                            <TextBlock Text=" results]:" Foreground="Blue"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:GroupViewModel}" ItemsSource="{Binding Students}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text=" [" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Students.Count}" Foreground="Blue"/>
+                            <TextBlock Text=" results]:" Foreground="Blue"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type vm:StudentViewModel}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ConcatedName}"/>
+                            <TextBlock Text=" (" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Age}" Foreground="Blue"/>
+                            <TextBlock Text=" years old) " Foreground="Blue"/>
+                            <TextBlock Text="AM: " Foreground="Red"/>
+                            <TextBlock Text="{Binding AM}" Foreground="Red"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TreeView.Resources>
             </TreeView>
         </StackPanel>
     </Grid>
