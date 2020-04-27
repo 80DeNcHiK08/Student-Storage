@@ -2,8 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:StudentStorage.WPF"
-             StartupUri="">
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="BorderColor" Color="#333"/>
+        <SolidColorBrush x:Key="ButtonColor" Color="#ddd"/>
+        <SolidColorBrush x:Key="BGColor" Color="#fff"/>
+        <SolidColorBrush x:Key="TextColor" Color="#000"/>
+        <FontFamily x:Key="FontFamily">Seoge UI</FontFamily>
+        <system:Double x:Key="FontSizeSmall">12</system:Double>
+        <system:Double x:Key="FontSizeMedium">16</system:Double>
+        <system:Double x:Key="FontSizeLarge">20</system:Double>
     </Application.Resources>
 </Application>

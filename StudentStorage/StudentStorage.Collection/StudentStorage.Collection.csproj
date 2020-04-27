@@ -45,6 +45,11 @@
     <Compile Include="..\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BinaryTree.cs" />
+    <Compile Include="Faculty.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="Student.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
