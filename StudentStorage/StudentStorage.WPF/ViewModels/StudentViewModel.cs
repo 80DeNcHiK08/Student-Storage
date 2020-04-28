@@ -22,5 +22,9 @@ namespace StudentStorage.WPF.ViewModels
             this.Age = DateTime.Now.Year - student.BirthDate.Year - 1 + 
                 ((DateTime.Now.Month > student.BirthDate.Month || DateTime.Now.Month == student.BirthDate.Month && DateTime.Now.Day >= student.BirthDate.Day) ? 1 : 0);
         }
+        public StudentViewModel()
+        {
+
+        }
     }
 }

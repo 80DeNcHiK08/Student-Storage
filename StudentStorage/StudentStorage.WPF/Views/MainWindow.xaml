@@ -40,7 +40,7 @@
         </Menu>
 
         <StackPanel Grid.Row="1" Margin="10, 0" Height="Auto">
-            <TreeView Height="160" Margin="0, 5" x:Name="TreeViewAll" TreeViewItem.Selected="TreeViewSelected" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+            <TreeView Height="160" Margin="0, 5" PreviewMouseLeftButtonDown="UnselectItem" x:Name="TreeViewAll" TreeViewItem.Selected="TreeViewSelected" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
                         <StackPanel Orientation="Horizontal">
@@ -71,7 +71,7 @@
                 </TreeView.Resources>
             </TreeView>
 
-            <Label Content="" Margin="0,5" BorderThickness="1" FontSize="{DynamicResource FontSizeSmall}" BorderBrush="{DynamicResource BorderColor}" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+            <Label x:Name="AM_TB" Content="" Margin="0,5" BorderThickness="1" FontSize="{DynamicResource FontSizeSmall}" BorderBrush="{DynamicResource BorderColor}" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
 
             <Grid Height="40" Margin="0,5" Background="{DynamicResource BGColor}">
                 <Grid.ColumnDefinitions>
@@ -81,10 +81,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Add faculty..." Margin="0,5,5,5" BorderBrush="{DynamicResource BorderColor}" Click="Add" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-                <Button Grid.Column="1" Content="Delete faculty" Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="DeleteCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-                <Button Grid.Column="2" Content="Modify faculty..." Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="ModifyCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-                <Button Grid.Column="3" Content="Delete all" Margin="5,5,0,5" BorderBrush="{DynamicResource BorderColor}" Click="DeleteAll" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Add_Info_Button" Grid.Column="0" Content="Add faculty..." Margin="0,5,5,5" BorderBrush="{DynamicResource BorderColor}" Click="Add" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Delete_Button" Grid.Column="1" Content="Delete" Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="DeleteCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Modify_Button" Grid.Column="2" Content="Modify..." Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="ModifyCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Delete_All_Button" Grid.Column="3" Content="Delete all" Margin="5,5,0,5" BorderBrush="{DynamicResource BorderColor}" Click="DeleteAll" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
             </Grid>
 
             <Label Content="Type to search: " FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>

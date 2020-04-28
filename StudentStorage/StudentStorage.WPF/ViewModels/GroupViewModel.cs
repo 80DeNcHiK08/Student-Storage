@@ -28,5 +28,16 @@ namespace StudentStorage.WPF.ViewModels
         public string Name { get; set; }
         public int Key { get; set; }
         public ObservableCollection<StudentViewModel> Students { get; set; }
+        public string AM
+        {
+            get
+            {
+                double res = 0;
+                foreach(var s in this.Students)
+                    res += Double.Parse(s.AM);
+                res /= this.Students.Count;
+                return res.ToString().Substring(0, 5);
+            }
+        }
     }
 }

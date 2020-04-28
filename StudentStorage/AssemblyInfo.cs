@@ -16,6 +16,6 @@ namespace AssemblyInfo
         public const string DESCRIPTION = "Program for collection data about students, groups and faculties";
         public const string COPYRIGHT = "Copyright © 2020 Miroshnichenko Denys";
         public const string COMPANY = "Oles' Honchar Dnipropetrovsk National University";
-        public const string VERSION = "0.0.*";
+        public const string VERSION = "0.5.*";
 	}
 }
