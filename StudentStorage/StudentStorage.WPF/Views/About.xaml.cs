@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace StudentStorage.WPF.Views
 {
@@ -22,6 +11,16 @@ namespace StudentStorage.WPF.Views
         public About()
         {
             InitializeComponent();
+#pragma warning disable CS0436 // Type conflicts with imported type
+            WPFNameLabel.Text = AssemblyInfo.Constants.TITLE + " (GUI for lab 2-3)";
+            WPFCopyrightLabel.Text = AssemblyInfo.Constants.COPYRIGHT + " All Rights reserved.";
+            WPFVersionLabel.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+#pragma warning restore CS0436 // Type conflicts with imported type
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

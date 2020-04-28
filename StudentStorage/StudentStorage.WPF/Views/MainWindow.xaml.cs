@@ -85,6 +85,16 @@ namespace StudentStorage.WPF.Views
                 OnPropertyChanged("SelectedItem");
             }
         }
+        private string _SerializationType = "Binary";
+        public string SerializationType 
+        { 
+            get { return _SerializationType; } 
+            set 
+            { 
+                _SerializationType = value;
+                OnPropertyChanged("SerializationType");
+            }
+        }
         private DateTime CurrentDate = DateTime.Now;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -211,8 +221,10 @@ namespace StudentStorage.WPF.Views
                     Delete_Button.Opacity = 0.7;
                     Modify_Button.Opacity = 0.7;
                     Modify_Button.IsEnabled = false;
+
+                    AM_TB.Content = "";
                 //}
-                
+
             }
         }
 

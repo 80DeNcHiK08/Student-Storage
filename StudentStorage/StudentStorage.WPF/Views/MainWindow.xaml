@@ -44,28 +44,28 @@
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text=" [" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Groups.Count}" Foreground="Blue"/>
-                            <TextBlock Text=" groups]" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Groups.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" groups]" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:GroupViewModel}" ItemsSource="{Binding Students}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text=" [" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Students.Count}" Foreground="Blue"/>
-                            <TextBlock Text=" students]" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Students.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" students]" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type vm:StudentViewModel}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ConcatedName}"/>
-                            <TextBlock Text=" (" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Age}" Foreground="Blue"/>
-                            <TextBlock Text=" years old) " Foreground="Blue"/>
-                            <TextBlock Text="AM: " Foreground="Red"/>
-                            <TextBlock Text="{Binding AM}" Foreground="Red"/>
+                            <TextBlock Text="{Binding ConcatedName}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" (" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" years old) " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="AM: " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding AM}" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </DataTemplate>
                 </TreeView.Resources>
@@ -95,28 +95,28 @@
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text=" [" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Groups.Count}" Foreground="Blue"/>
-                            <TextBlock Text=" results]:" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Groups.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" results]:" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type vm:GroupViewModel}" ItemsSource="{Binding Students}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text=" [" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Students.Count}" Foreground="Blue"/>
-                            <TextBlock Text=" results]:" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Students.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" results]:" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type vm:StudentViewModel}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ConcatedName}"/>
-                            <TextBlock Text=" (" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Age}" Foreground="Blue"/>
-                            <TextBlock Text=" years old) " Foreground="Blue"/>
-                            <TextBlock Text="AM: " Foreground="Red"/>
-                            <TextBlock Text="{Binding AM}" Foreground="Red"/>
+                            <TextBlock Text="{Binding ConcatedName}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" (" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" years old) " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="AM: " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding AM}" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </DataTemplate>
                 </TreeView.Resources>

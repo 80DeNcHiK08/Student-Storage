@@ -5,8 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentStorage.WPF.Views"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Settings" 
+        Height="360" 
+        Width="450"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{DynamicResource BGColor}">
+    <StackPanel Margin="10,0" Background="{DynamicResource BGColor}">
+        <TreeView Margin="0, 15" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="250" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}">
+            <TreeViewItem Header="Editor:" IsExpanded="True" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Theme:" Margin="5" Foreground="{DynamicResource TextColor}"/>
+                    <ComboBox Name="ThemeSelector" SelectionChanged="ThemeChanged" Grid.Row="0" Grid.Column="1" SelectedIndex="0" Margin="5" Width="110" VerticalContentAlignment="Center">
+                        <ComboBoxItem Content="Light"/>
+                        <ComboBoxItem Content="Dark"/>
+                        <ComboBoxItem Content="Custom"/>
+                    </ComboBox>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="BG color: " Margin="5" Foreground="{DynamicResource TextColor}"/>
+                    <Button Content="" x:Name="BGColorButton" Grid.Row="1" Grid.Column="1" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BGColorPick"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Text color: " Margin="5" Foreground="{DynamicResource TextColor}"/>
+                    <Button Content="" x:Name="TextColorButton" Grid.Row="2" Grid.Column="1" Background="{DynamicResource TextColor}" BorderBrush="{DynamicResource BorderColor}" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Click="TextColorPick"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="Font family: " Margin="5" Foreground="{DynamicResource TextColor}"/>
+
+                    <ComboBox Name="FontFamilySelector" SelectionChanged="FontChanged" Grid.Row="3" Grid.Column="1" SelectedIndex="0" Margin="5" Width="125" VerticalContentAlignment="Center">
+                        <ComboBoxItem Content="Seoge UI"/>
+                        <ComboBoxItem Content="Courier New"/>
+                        <ComboBoxItem Content="Calibri"/>
+                        <ComboBoxItem Content="Microsoft Sans Serif"/>
+                    </ComboBox>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="Font size: " Margin="5" Foreground="{DynamicResource TextColor}"/>
+
+                    <ComboBox Name="FontSizeSelector" SelectionChanged="FontSizeChanged" Grid.Row="4" Grid.Column="1" SelectedIndex="0" Margin="5" Width="110" VerticalContentAlignment="Center">
+                        <ComboBoxItem Content="Small"/>
+                        <ComboBoxItem Content="Medium"/>
+                        <ComboBoxItem Content="Large"/>
+                    </ComboBox>
+                </Grid>
+            </TreeViewItem>
+            <TreeViewItem Header="Other:" IsExpanded="True" Foreground="{DynamicResource TextColor}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Save data as:" Margin="5" Foreground="{DynamicResource TextColor}"/>
+                    <ComboBox Name="SerializationTypeSelector" SelectionChanged="STypeChanged" Grid.Row="0" Grid.Column="1" SelectedIndex="0" Margin="5" Width="110" VerticalContentAlignment="Center">
+                        <ComboBoxItem Content="XML"/>
+                        <ComboBoxItem Content="Json"/>
+                        <ComboBoxItem Content="Binary"/>
+                    </ComboBox>
+                </Grid>
+            </TreeViewItem>
+        </TreeView>
+
+        <Grid Background="{DynamicResource BGColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Apply" Width="120" Height="30" Click="ApplyClick" BorderBrush="{DynamicResource BorderColor}" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            <Button Grid.Column="1" Content="Cancel" Width="120" Height="30" Click="CancelClick" BorderBrush="{DynamicResource BorderColor}" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+        </Grid>
+    </StackPanel>
 </Window>
