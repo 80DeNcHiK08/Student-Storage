@@ -68,9 +68,9 @@
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Save data as:" Margin="5" Foreground="{DynamicResource TextColor}"/>
                     <ComboBox Name="SerializationTypeSelector" SelectionChanged="STypeChanged" Grid.Row="0" Grid.Column="1" SelectedIndex="0" Margin="5" Width="110" VerticalContentAlignment="Center">
-                        <ComboBoxItem Content="XML"/>
-                        <ComboBoxItem Content="Json"/>
                         <ComboBoxItem Content="Binary"/>
+                        <ComboBoxItem Content="XML" IsEnabled="False"/>
+                        <ComboBoxItem Content="Json" IsEnabled="False"/>
                     </ComboBox>
                 </Grid>
             </TreeViewItem>

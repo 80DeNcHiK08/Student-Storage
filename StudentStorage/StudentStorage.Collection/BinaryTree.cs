@@ -495,7 +495,7 @@ namespace StudentStorage.Collection
             return this.Count.CompareTo(other.Count);
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
                 throw new ArgumentNullException("info");
@@ -512,7 +512,7 @@ namespace StudentStorage.Collection
             }
         }
 
-        public void OnDeserialization(object sender)
+        public virtual void OnDeserialization(object sender)
         {
             if (comparer != null)
             {

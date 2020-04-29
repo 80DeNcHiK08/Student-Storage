@@ -128,7 +128,7 @@ namespace StudentStorage.WPF.Views
 
         private void STypeChanged(object sender, RoutedEventArgs e)
         {
-            //MainWindow.SerializationType = SerializationTypeSelector.SelectedValue.ToString().Substring(SerializationTypeSelector.SelectedValue.ToString().LastIndexOf(':') + 2);
+            MainWindow.SerializationType = SerializationTypeSelector.SelectedValue.ToString().Substring(SerializationTypeSelector.SelectedValue.ToString().LastIndexOf(':') + 2);
         }
     }
 }

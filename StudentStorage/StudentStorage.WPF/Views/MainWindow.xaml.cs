@@ -1,11 +1,14 @@
-﻿using StudentStorage.Collection;
+﻿using Microsoft.Win32;
+using StudentStorage.Collection;
 using StudentStorage.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace StudentStorage.WPF.Views
 {
@@ -85,16 +89,7 @@ namespace StudentStorage.WPF.Views
                 OnPropertyChanged("SelectedItem");
             }
         }
-        private string _SerializationType = "Binary";
-        public string SerializationType 
-        { 
-            get { return _SerializationType; } 
-            set 
-            { 
-                _SerializationType = value;
-                OnPropertyChanged("SerializationType");
-            }
-        }
+        public static string SerializationType = "Binary";
         private DateTime CurrentDate = DateTime.Now;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -230,17 +225,90 @@ namespace StudentStorage.WPF.Views
 
         private void UpdateView()
         {
+            CollectionView = new List<FacultyViewModel>();
+            foreach (var c in Collection)
+            {
+                FacultyViewModel f = new FacultyViewModel(c.Value);
+                f.Key = c.Key;
+                CollectionView.Add(f);
+            }
 
+            TreeViewAll.ItemsSource = CollectionView;
         }
 
         private void Save(object sender, RoutedEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog();
+            switch (SerializationType)
+            {
+                case "Binary":
+                    sfd.DefaultExt = "dat";
+                    sfd.AddExtension = true;
+                    break;
+                case "XML":
+                    sfd.DefaultExt = "xml";
+                    sfd.AddExtension = true;
+                    break;
+                default:
+                    break;
+            }
 
+            sfd.ShowDialog();
+            try
+            {
+                using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate))
+                {
+                    switch (SerializationType)
+                    {
+                        case "Binary":
+                            BinaryFormatter formatter = new BinaryFormatter();
+                            formatter.Serialize(fs, Collection);
+                            break;
+                        case "XML":
+                            XmlSerializer xmlformatter = new XmlSerializer(typeof(BinaryTree<int, Faculty<int, Group<int, Student>>>));
+                            xmlformatter.Serialize(fs, Collection);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorPage errorPage = new ErrorPage(ex.Message);
+                errorPage.ShowDialog();
+            }
         }
 
         private void Load(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            try
+            {
+                using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open))
+                {
+                    switch (SerializationType)
+                    {
+                        case "Binary":
+                            BinaryFormatter formatter = new BinaryFormatter();
+                            Collection = (BinaryTree<int, Faculty<int, Group<int, Student>>>)formatter.Deserialize(fs);
+                            break;
+                        case "XML":
+                            XmlSerializer xmlformatter = new XmlSerializer(typeof(BinaryTree<int, Faculty<int, Group<int, Student>>>));
+                            Collection = (BinaryTree<int, Faculty<int, Group<int, Student>>>)xmlformatter.Deserialize(fs);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                UpdateView();
+            }
+            catch (Exception ex)
+            {
+                ErrorPage errorPage = new ErrorPage(ex.Message);
+                errorPage.ShowDialog();
+            }
         }
 
         private void AboutShow(object sender, RoutedEventArgs e)
@@ -336,6 +404,7 @@ namespace StudentStorage.WPF.Views
             Delete_Button.Opacity = 0.7;
             Modify_Button.Opacity = 0.7;
             Modify_Button.IsEnabled = false;
+            AM_TB.Content = "";
         }
 
         private void Find(object sender, System.Windows.Controls.TextChangedEventArgs e)

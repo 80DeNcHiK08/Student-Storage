@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace StudentStorage.Collection
 {
@@ -6,11 +7,18 @@ namespace StudentStorage.Collection
     public class Group<TKey, TValue> : BinaryTree<TKey, TValue>, ICloneable, IComparable<Group<TKey, TValue>> where TKey : IComparable<TKey> where TValue : Student, IComparable<TValue>, ICloneable, new()
     {
         public string GroupName { get; set; }
+        private SerializationInfo siInfo;
         public Group()
         { }
         public Group(string name)
         {
             GroupName = name;
+        }
+        public Group(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+            if (info == null)
+                throw new System.ArgumentNullException("info");
+            siInfo = info;
         }
         public override string ToString()
         {
@@ -36,6 +44,17 @@ namespace StudentStorage.Collection
         public int CompareTo(Group<TKey, TValue> group2)
         {
             return string.CompareOrdinal(this.GroupName, group2.GroupName);
+        }
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("GroupName", GroupName);
+            base.GetObjectData(info, context);
+        }
+
+        public override void OnDeserialization(object sender)
+        {
+            base.OnDeserialization(sender);
+            GroupName = siInfo.GetString("GroupName");
         }
     }
 }

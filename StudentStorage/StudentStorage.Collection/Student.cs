@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace StudentStorage.Collection
 {
@@ -76,6 +77,11 @@ namespace StudentStorage.Collection
             MiddleName = student.MiddleName;
             BirthDate = student.BirthDate;
             MiddleGrade = student.MiddleGrade;
+        }
+
+        public Student(SerializationInfo info, StreamingContext context)
+        {
+
         }
 
         public override bool Equals(object obj)
