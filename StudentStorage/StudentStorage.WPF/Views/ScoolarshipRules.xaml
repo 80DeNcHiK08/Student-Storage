@@ -1,0 +1,45 @@
+﻿<Window x:Class="StudentStorage.WPF.Views.ScoolarshipRules"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentStorage.WPF.Views"
+        xmlns:vm="clr-namespace:StudentStorage.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Scoolarship Rules" Height="300" Width="450" ResizeMode="NoResize" Background="{DynamicResource BGColor}">
+    <Grid Margin="10,0" Background="{DynamicResource BGColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="RulesList" Grid.Row="0" SelectionChanged="RulesListSelected" Grid.ColumnSpan="4" Margin="0, 10" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}">
+            <ListBox.Resources>
+                <DataTemplate DataType="{x:Type vm:ScoolarshipRule}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                        <TextBlock Text=": " FontWeight="Bold" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                        <TextBlock Text="minimal grade " FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                        <TextBlock Text="{Binding MinMark}" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                        <TextBlock Text="; can reach: " FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                        <TextBlock Text="{Binding PercToReach}" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                        <TextBlock Text="%" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.Resources>
+        </ListView>
+        <Button Grid.Row="1" x:Name="AddButton" Click="AddRule" Grid.Column="0" Content="Add Rule" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+        <Button Grid.Row="1" x:Name="ModifyButton" Click="ModifyRule" IsEnabled="False" Opacity="0.7" Grid.Column="1" Content="Modify Rule" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+        <Button Grid.Row="1" x:Name="DeleteButton" Click="DeleteRule" IsEnabled="False" Opacity="0.7" Grid.Column="2" Content="Delete Rule" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+        <Button Grid.Row="1" x:Name="DeleteAllButton" Click="DeleteAll" Grid.Column="3" Content="Delete All" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Click="Cancel" x:Name="ApplyButton" Content="Apply" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Click="Cancel" Grid.Column="2"  x:Name="CancelButton" Content="Cancel" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+    </Grid>
+</Window>

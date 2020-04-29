@@ -1,0 +1,122 @@
+﻿<Window x:Class="StudentStorage.WPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentStorage.WPF.Views"
+        xmlns:vm="clr-namespace:StudentStorage.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Student Storage" 
+        Height="590" Width="450"
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:CustomCommands.AboutShow" Executed="AboutShow" />
+        <CommandBinding Command="local:CustomCommands.OpenSettings" Executed="OpenSettings" />
+        <CommandBinding Command="local:CustomCommands.SetScoolarshipRules" Executed="SetScoolarshipRules" />
+    </Window.CommandBindings>
+    <Grid Background="{DynamicResource BGColor}" Height="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+            <MenuItem Header="File" Background="{DynamicResource BGColor}">
+                <MenuItem Header="Load Data" Click="Load" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+                <MenuItem Header="Save Data" Click="Save" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Settings" Command="local:CustomCommands.OpenSettings" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+                <MenuItem Header="Set scoolarship rules" Command="local:CustomCommands.SetScoolarshipRules" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+            </MenuItem>
+            <MenuItem Header="Help" Background="{DynamicResource BGColor}">
+                <MenuItem Header="About" Command="local:CustomCommands.AboutShow" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Grid.Row="1" Margin="10, 0" Height="Auto">
+            <TreeView Height="160" Margin="0, 5" PreviewMouseLeftButtonDown="UnselectItem" x:Name="TreeViewAll" TreeViewItem.Selected="TreeViewSelected" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Groups.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" groups]" Foreground="{DynamicResource TextColor}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:GroupViewModel}" ItemsSource="{Binding Students}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Students.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" students]" Foreground="{DynamicResource TextColor}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type vm:StudentViewModel}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ConcatedName}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" (" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" years old) " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="ST: " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding SponsorType}" Foreground="{DynamicResource TextColor}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+
+            <Label x:Name="AM_TB" Content="" Margin="0,5" BorderThickness="1" FontSize="{DynamicResource FontSizeSmall}" BorderBrush="{DynamicResource BorderColor}" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
+
+            <Grid Height="40" Margin="0,5" Background="{DynamicResource BGColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Add_Info_Button" Grid.Column="0" Content="Add faculty..." Margin="0,5,5,5" BorderBrush="{DynamicResource BorderColor}" Click="Add" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Delete_Button" Grid.Column="1" Content="Delete" Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="DeleteCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Modify_Button" Grid.Column="2" Content="Modify..." Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="ModifyCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Delete_All_Button" Grid.Column="3" Content="Delete all" Margin="5,5,0,5" BorderBrush="{DynamicResource BorderColor}" Click="DeleteAll" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            </Grid>
+
+            <Label Content="Type to search: " FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            <TextBox Margin="0,5" Height="30" TextChanged="Find" BorderBrush="{DynamicResource BorderColor}" VerticalContentAlignment="Center" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+
+            <Label Content="Results: " FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            <TreeView Height="160" Margin="0, 5" x:Name="TreeViewSResult" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Groups.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" results]:" Foreground="{DynamicResource TextColor}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:GroupViewModel}" ItemsSource="{Binding Students}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" [" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Students.Count}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" results]:" Foreground="{DynamicResource TextColor}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type vm:StudentViewModel}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ConcatedName}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" (" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" years old) " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="AM: " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding AM}" Foreground="{DynamicResource TextColor}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </StackPanel>
+    </Grid>
+</Window>
