@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentStorage.WPF.Views"
         mc:Ignorable="d"
-        Title="ScoolarshipList" Height="450" Width="800">
-    <Grid>
-        
+        Title="ScoolarshipList" Height="500" Width="450" ResizeMode="NoResize">
+    <Grid Margin="10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+
+        <TreeView Grid.Row="0">
+            
+        </TreeView>
+
+        <Button Grid.Row="1"  x:Name="CancelButton" Content="OK" Width="100" Height="25" Margin="0,5" VerticalAlignment="Center"/>
     </Grid>
 </Window>

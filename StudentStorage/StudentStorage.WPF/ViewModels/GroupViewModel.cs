@@ -14,13 +14,14 @@ namespace StudentStorage.WPF.ViewModels
         {
             this.Students = new ObservableCollection<StudentViewModel>();
         }
-        public GroupViewModel(Group<int, Student> group)
+        public GroupViewModel(Group<int, Student> group, FacultyViewModel parent)
         {
             this.Name = group.GroupName;
+            this.Parent = parent;
             this.Students = new ObservableCollection<StudentViewModel>();
             foreach(var student in group)
             {
-                StudentViewModel s = new StudentViewModel(student.Value);
+                StudentViewModel s = new StudentViewModel(student.Value, this);
                 s.Key = student.Key;
                 this.Students.Add(s);
             }
@@ -28,6 +29,7 @@ namespace StudentStorage.WPF.ViewModels
         public string Name { get; set; }
         public int Key { get; set; }
         public ObservableCollection<StudentViewModel> Students { get; set; }
+        public FacultyViewModel Parent { get; set; }
         public string AM
         {
             get
@@ -36,7 +38,7 @@ namespace StudentStorage.WPF.ViewModels
                 foreach(var s in this.Students)
                     res += Double.Parse(s.AM);
                 res /= this.Students.Count;
-                return res.ToString().Substring(0, 5);
+                return String.Format("{0:0.#}", res.ToString());
             }
         }
     }

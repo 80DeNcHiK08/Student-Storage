@@ -105,7 +105,7 @@ namespace StudentStorage.WPF.Views
 
             #region testing values
             //Testing
-            Random rand = new Random();
+            /*Random rand = new Random();
             Faculty<int, Group<int, Student>> f1 = new Faculty<int, Group<int, Student>>("Faculty 1");
             Faculty<int, Group<int, Student>> f2 = new Faculty<int, Group<int, Student>>("Faculty 2");
             Group<int, Student>[] groups = new Group<int, Student>[5];
@@ -121,18 +121,18 @@ namespace StudentStorage.WPF.Views
                     int range = (end - start).Days;
                     DateTime birthdate = start.AddDays(rand.Next(range));
                     Student s = new Student("FName" + i, "LName" + i, "SName" + i, birthdate, float.Parse((50 + rand.NextDouble() * 50).ToString()));
-                    groups[j].Add(i, s);
+                    groups[j].Add(i + 1, s);
                 }
             }
 
-            f1.Add(0, groups[0]);
-            f1.Add(1, groups[1]);
-            f1.Add(2,groups[2]);
-            f2.Add(3,groups[3]);
-            f2.Add(4,groups[4]);
+            f1.Add(1, groups[0]);
+            f1.Add(2, groups[1]);
+            f1.Add(3,groups[2]);
+            f2.Add(4,groups[3]);
+            f2.Add(5,groups[4]);
 
-            Collection.Add(0, f1);
-            Collection.Add(1, f2);
+            Collection.Add(1, f1);
+            Collection.Add(2, f2);
 
             CollectionView = new List<FacultyViewModel>();
             foreach(var c in Collection)
@@ -140,7 +140,7 @@ namespace StudentStorage.WPF.Views
                 FacultyViewModel f = new FacultyViewModel(c.Value);
                 f.Key = c.Key;
                 CollectionView.Add(f);
-            }
+            }*/
             #endregion
             
             TreeViewAll.ItemsSource = CollectionView;
@@ -208,6 +208,7 @@ namespace StudentStorage.WPF.Views
                 //  item.IsSelected = false;
                     
                     treeView.Focus();
+                    SelectedItem = null;
 
                     Add_Info_Button.Content = "Add faculty...";
                     Delete_Button.Content = "Delete";
@@ -376,17 +377,165 @@ namespace StudentStorage.WPF.Views
 
         private void Add(object sender, RoutedEventArgs e)
         {
+            if(SelectedItem == null)
+            {
+                InputPage ip = new InputPage(new FacultyViewModel(), "Add");
+                ip.Owner = this;
+                ip.Resources["BorderColor"] = Resources["BorderColor"];
+                ip.Resources["ButtonColor"] = Resources["ButtonColor"];
+                ip.Resources["BGColor"] = Resources["BGColor"];
+                ip.Resources["TextColor"] = Resources["TextColor"];
+                ip.Resources["FontStyle"] = Resources["FontStyle"];
+                ip.Resources["FontFamily"] = Resources["FontFamily"];
+                ip.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                ip.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                ip.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
 
+                ip.Show();
+
+                TreeViewAll.ItemsSource = null;
+                TreeViewAll.ItemsSource = CollectionView;
+                return;
+            }
+
+            if(SelectedItem.GetType().Name == SelectedFaculty.GetType().Name)
+            {
+                SelectedFaculty = (FacultyViewModel)SelectedItem;
+                InputPage ip = new InputPage(new GroupViewModel(), "Add");
+                ip.Owner = this;
+                ip.Resources["BorderColor"] = Resources["BorderColor"];
+                ip.Resources["ButtonColor"] = Resources["ButtonColor"];
+                ip.Resources["BGColor"] = Resources["BGColor"];
+                ip.Resources["TextColor"] = Resources["TextColor"];
+                ip.Resources["FontStyle"] = Resources["FontStyle"];
+                ip.Resources["FontFamily"] = Resources["FontFamily"];
+                ip.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                ip.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                ip.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
+                ip.Show();
+                TreeViewAll.ItemsSource = null;
+                TreeViewAll.ItemsSource = CollectionView;
+                return;
+            }
+
+            if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
+            {
+                SelectedGroup = (GroupViewModel)SelectedItem;
+                StudentInput si = new StudentInput();
+                si.Owner = this;
+                si.Resources["BorderColor"] = Resources["BorderColor"];
+                si.Resources["ButtonColor"] = Resources["ButtonColor"];
+                si.Resources["BGColor"] = Resources["BGColor"];
+                si.Resources["TextColor"] = Resources["TextColor"];
+                si.Resources["FontStyle"] = Resources["FontStyle"];
+                si.Resources["FontFamily"] = Resources["FontFamily"];
+                si.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                si.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                si.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
+                si.Show();
+                TreeViewAll.ItemsSource = null;
+                TreeViewAll.ItemsSource = CollectionView;
+                return;
+            }
         }
 
         private void DeleteCurrent(object sender, RoutedEventArgs e)
         {
+            if (SelectedItem.GetType().Name == SelectedFaculty.GetType().Name)
+            {
+                SelectedFaculty = (FacultyViewModel)SelectedItem;
+                Collection.Remove(SelectedFaculty.Key, true);
+                CollectionView.Remove(SelectedFaculty);
+            }
 
+            if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
+            {
+                SelectedGroup = (GroupViewModel)SelectedItem;
+                Faculty<int, Group<int, Student>> faculty;
+                Collection.TryGetValue(SelectedGroup.Parent.Key, out faculty, true);
+                faculty.Remove(SelectedGroup.Key, true);
+                SelectedGroup.Parent.Groups.Remove(SelectedGroup);
+            }
+
+            if (SelectedItem.GetType().Name == SelectedStudent.GetType().Name)
+            {
+                SelectedStudent = (StudentViewModel)SelectedItem;
+                Faculty<int, Group<int, Student>> faculty;
+                Collection.TryGetValue(SelectedStudent.Parent.Parent.Key, out faculty, true);
+                Group<int, Student> group;
+                faculty.TryGetValue(SelectedStudent.Parent.Key, out group, true);
+                group.Remove(SelectedStudent.Key, true);
+                SelectedStudent.Parent.Students.Remove(SelectedStudent);
+            }
+
+            TreeViewAll.ItemsSource = null;
+            TreeViewAll.ItemsSource = CollectionView;
         }
 
         private void ModifyCurrent(object sender, RoutedEventArgs e)
         {
+            if (SelectedItem.GetType().Name == SelectedFaculty.GetType().Name)
+            {
+                InputPage ip = new InputPage((FacultyViewModel)SelectedItem, "Modify");
+                ip.Owner = this;
+                ip.Resources["BorderColor"] = Resources["BorderColor"];
+                ip.Resources["ButtonColor"] = Resources["ButtonColor"];
+                ip.Resources["BGColor"] = Resources["BGColor"];
+                ip.Resources["TextColor"] = Resources["TextColor"];
+                ip.Resources["FontStyle"] = Resources["FontStyle"];
+                ip.Resources["FontFamily"] = Resources["FontFamily"];
+                ip.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                ip.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                ip.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
 
+                ip.Show();
+
+                TreeViewAll.ItemsSource = null;
+                TreeViewAll.ItemsSource = CollectionView;
+            }
+
+            if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
+            {
+                InputPage ip = new InputPage((GroupViewModel)SelectedItem, "Modify");
+                ip.Owner = this;
+                ip.Resources["BorderColor"] = Resources["BorderColor"];
+                ip.Resources["ButtonColor"] = Resources["ButtonColor"];
+                ip.Resources["BGColor"] = Resources["BGColor"];
+                ip.Resources["TextColor"] = Resources["TextColor"];
+                ip.Resources["FontStyle"] = Resources["FontStyle"];
+                ip.Resources["FontFamily"] = Resources["FontFamily"];
+                ip.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                ip.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                ip.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
+                ip.Show();
+
+                TreeViewAll.ItemsSource = null;
+                TreeViewAll.ItemsSource = CollectionView;
+            }
+
+            if (SelectedItem.GetType().Name == SelectedStudent.GetType().Name)
+            {
+                SelectedStudent = (StudentViewModel)SelectedItem;
+                StudentInput si = new StudentInput((StudentViewModel)SelectedItem);
+                si.Owner = this;
+                si.Resources["BorderColor"] = Resources["BorderColor"];
+                si.Resources["ButtonColor"] = Resources["ButtonColor"];
+                si.Resources["BGColor"] = Resources["BGColor"];
+                si.Resources["TextColor"] = Resources["TextColor"];
+                si.Resources["FontStyle"] = Resources["FontStyle"];
+                si.Resources["FontFamily"] = Resources["FontFamily"];
+                si.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                si.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                si.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
+                si.Show();
+
+                TreeViewAll.ItemsSource = null;
+                TreeViewAll.ItemsSource = CollectionView;
+            }
         }
 
         private void DeleteAll(object sender, RoutedEventArgs e)
