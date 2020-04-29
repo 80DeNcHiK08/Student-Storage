@@ -1,0 +1,24 @@
+﻿<Window x:Class="StudentStorage.WPF.Views.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentStorage.WPF.Views"
+        mc:Ignorable="d"
+        Title="" Height="400" Width="450" Background="{DynamicResource BGColor}">
+    <StackPanel Margin="10" Background="{DynamicResource BGColor}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <Label Content="Name: " FontWeight="Bold" FontSize="{DynamicResource FontSizeMedium}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label x:Name="NameLabel" Content="" Margin="25,0" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label Content="Birth date: " FontWeight="Bold" FontSize="{DynamicResource FontSizeMedium}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label x:Name="BDLabel" Content="" Margin="25,0" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label Content="Faculty name: " FontWeight="Bold" FontSize="{DynamicResource FontSizeMedium}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label x:Name="FNLabel" Content="" Margin="25,0" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label Content="Group name: " FontWeight="Bold" FontSize="{DynamicResource FontSizeMedium}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label x:Name="GNLabel" Content="" Margin="25,0" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label Content="Student's average mark: " FontWeight="Bold" FontSize="{DynamicResource FontSizeMedium}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label x:Name="AMLabel" Content="" Margin="25,0" FontSize="{DynamicResource FontSizeSmall}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+        <Label x:Name="SSLabel" Margin="0,10" Content="This student receives a " FontWeight="Bold" FontSize="{DynamicResource FontSizeMedium}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}"/>
+
+        <Button x:Name="OKButton" Click="Cancel" Content="OK" Height="25" Width="100" Margin="0,5" BorderBrush="{DynamicResource BorderColor}" HorizontalAlignment="Center" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+    </StackPanel>
+</Window>

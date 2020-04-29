@@ -26,10 +26,24 @@ namespace StudentStorage.WPF.ViewModels
                 this.Students.Add(s);
             }
         }
+
+        public GroupViewModel(Group<int, Student> group, FacultyViewModel parent, List<ScoolarshipRule> rules)
+        {
+            this.Name = group.GroupName;
+            this.Parent = parent;
+            this.Students = new ObservableCollection<StudentViewModel>();
+            foreach (var student in group)
+            {
+                StudentViewModel s = new StudentViewModel(student.Value, this, rules);
+                s.Key = student.Key;
+                this.Students.Add(s);
+            }
+        }
         public string Name { get; set; }
         public int Key { get; set; }
         public ObservableCollection<StudentViewModel> Students { get; set; }
         public FacultyViewModel Parent { get; set; }
+        public int SponsoredCount { get; set; }
         public string AM
         {
             get

@@ -14,7 +14,6 @@
         <CommandBinding Command="local:CustomCommands.AboutShow" Executed="AboutShow" />
         <CommandBinding Command="local:CustomCommands.OpenSettings" Executed="OpenSettings" />
         <CommandBinding Command="local:CustomCommands.SetScoolarshipRules" Executed="SetScoolarshipRules" />
-        <CommandBinding Command="local:CustomCommands.GetScoolarshipList" Executed="GetScoolarshipList" />
     </Window.CommandBindings>
     <Grid Background="{DynamicResource BGColor}" Height="Auto">
         <Grid.RowDefinitions>
@@ -29,10 +28,7 @@
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Settings" Command="local:CustomCommands.OpenSettings" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
-            </MenuItem>
-            <MenuItem Header="Scoolarship" Background="{DynamicResource BGColor}">
                 <MenuItem Header="Set scoolarship rules" Command="local:CustomCommands.SetScoolarshipRules" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
-                <MenuItem Header="Get scoolarship list" Command="local:CustomCommands.GetScoolarshipList" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
             </MenuItem>
             <MenuItem Header="Help" Background="{DynamicResource BGColor}">
                 <MenuItem Header="About" Command="local:CustomCommands.AboutShow" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
@@ -40,7 +36,7 @@
         </Menu>
 
         <StackPanel Grid.Row="1" Margin="10, 0" Height="Auto">
-            <TreeView Height="160" Margin="0, 5" PreviewMouseLeftButtonDown="UnselectItem" x:Name="TreeViewAll" TreeViewItem.Selected="TreeViewSelected" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
+            <TreeView Height="160" Margin="0, 5" PreviewMouseLeftButtonDown="UnselectItem" x:Name="TreeViewAll" TreeViewItem.Selected="TreeViewSelected" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type vm:FacultyViewModel}" ItemsSource="{Binding Groups}">
                         <StackPanel Orientation="Horizontal">
@@ -64,8 +60,8 @@
                             <TextBlock Text=" (" Foreground="{DynamicResource TextColor}"/>
                             <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
                             <TextBlock Text=" years old) " Foreground="{DynamicResource TextColor}"/>
-                            <TextBlock Text="AM: " Foreground="{DynamicResource TextColor}"/>
-                            <TextBlock Text="{Binding AM}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="ST: " Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding SponsorType}" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </DataTemplate>
                 </TreeView.Resources>

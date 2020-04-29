@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="ViewModels\FacultyViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\ScoolarshipRule.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
@@ -90,14 +91,17 @@
     <Compile Include="Views\ErrorPage.xaml.cs">
       <DependentUpon>ErrorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Info.xaml.cs">
+      <DependentUpon>Info.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InputPage.xaml.cs">
       <DependentUpon>InputPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScoolarshipList.xaml.cs">
-      <DependentUpon>ScoolarshipList.xaml</DependentUpon>
+    <Compile Include="Views\RuleInput.xaml.cs">
+      <DependentUpon>RuleInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScoolarshipRules.xaml.cs">
       <DependentUpon>ScoolarshipRules.xaml</DependentUpon>
@@ -138,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Info.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InputPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,7 +154,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScoolarshipList.xaml">
+    <Page Include="Views\RuleInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

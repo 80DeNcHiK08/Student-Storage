@@ -9,8 +9,6 @@ namespace StudentStorage.Collection
         private string fName, lName, mName;
         private DateTime birthDate;
         private float midGrade;
-        private bool sponsored;
-        private bool hightsponsored;
 
         public string FirstName
         {
@@ -40,18 +38,6 @@ namespace StudentStorage.Collection
         {
             get { return midGrade; }
             set { midGrade = (value >= 0 && value <= 100) ? value : 0; }
-        }
-
-        public bool IsSponsored
-        {
-            get { return sponsored; }
-            private set { sponsored = (MiddleGrade >= 60); }
-        }
-
-        public bool IsHightSponsored
-        {
-            get { return hightsponsored; }
-            private set { hightsponsored = (MiddleGrade >= 95); }
         }
 
         public Student()

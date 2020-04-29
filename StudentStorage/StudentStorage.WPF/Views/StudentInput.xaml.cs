@@ -32,6 +32,7 @@ namespace StudentStorage.WPF.Views
         public StudentInput(StudentViewModel student)
         {
             InitializeComponent();
+            this.Title = student.ConcatedName + " - info";
             this.Mode = "Modify";
             this.Title = "Modify selected student";
             AddNextButton.Visibility = Visibility.Hidden;
@@ -56,7 +57,7 @@ namespace StudentStorage.WPF.Views
                 else
                     group.Add(group.MaxValue.Key + 1, newstud);
 
-                ((MainWindow)Owner).SelectedGroup.Students.Add(new StudentViewModel(newstud, ((MainWindow)Owner).SelectedGroup));
+                ((MainWindow)Owner).SelectedGroup.Students.Add(new StudentViewModel(newstud, ((MainWindow)Owner).SelectedGroup, ((MainWindow)Owner).Rules));
             }
             if (this.Mode == "Modify")
             {
@@ -73,7 +74,7 @@ namespace StudentStorage.WPF.Views
                 oldstud.BirthDate = StudentBDate.Value.GetValueOrDefault();
 
                 ((MainWindow)Owner).SelectedStudent.Parent.Students.Remove(((MainWindow)Owner).SelectedStudent);
-                ((MainWindow)Owner).SelectedStudent.Parent.Students.Add(new StudentViewModel(oldstud, ((MainWindow)Owner).SelectedStudent.Parent));
+                ((MainWindow)Owner).SelectedStudent.Parent.Students.Add(new StudentViewModel(oldstud, ((MainWindow)Owner).SelectedStudent.Parent, ((MainWindow)Owner).Rules));
             }
         }
 

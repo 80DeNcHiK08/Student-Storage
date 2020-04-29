@@ -26,6 +26,19 @@ namespace StudentStorage.WPF.ViewModels
             }
             
         }
+
+        public FacultyViewModel(Faculty<int, Group<int, Student>> faculty, List<ScoolarshipRule> rules)
+        {
+            this.Name = faculty.FacultyName;
+            this.Groups = new ObservableCollection<GroupViewModel>();
+            foreach (var group in faculty)
+            {
+                GroupViewModel g = new GroupViewModel(group.Value, this, rules);
+                g.Key = group.Key;
+                this.Groups.Add(g);
+            }
+
+        }
         public string Name { get; set; }
         public int Key { get; set; }
         public ObservableCollection<GroupViewModel> Groups { get; set; }
