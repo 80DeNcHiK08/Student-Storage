@@ -10,6 +10,8 @@ namespace StudentStorage.Collection
         public Node<TKey, TValue> Left { get; set; }
         public Node<TKey, TValue> Right { get; set; }
         public Node<TKey, TValue> Parent { get; set; }
+        public Node<TKey, TValue> Prev { get; set; }
+        public Node<TKey, TValue> Next { get; set; }
         public Node(TKey key, TValue value)
         {
             Key = key;
