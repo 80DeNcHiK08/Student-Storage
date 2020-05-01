@@ -13,7 +13,7 @@
             </Label.Content>
         </Label>
 
-        <TextBox x:Name="NameField" TextChanged="ValueChanged" Grid.Row="5" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+        <TextBox x:Name="NameField" GotFocus="SelectText" TextChanged="ValueChanged" Grid.Row="5" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
 
         <Grid Height="50" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>

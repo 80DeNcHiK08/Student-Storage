@@ -36,6 +36,7 @@ namespace StudentStorage.WPF.Views
             NameField.Text = rule.Name;
             Mark.Value = double.Parse(rule.MinMark.ToString());
             Percent.Value = double.Parse(rule.PercToReach.ToString());
+            NameField.Focus();
         }
 
         private void AddOrModify()
@@ -98,6 +99,16 @@ namespace StudentStorage.WPF.Views
         private bool NumberFieldsCorrect()
         {
             return (Percent.Value < 0 || Percent.Value > 100 || Mark.Value < 0 || Mark.Value > 100) ? true : false;
+        }
+
+        private void SelectText(object sender, RoutedEventArgs e)
+        {
+            var item = e.OriginalSource as UIElement;
+            if (item != null)
+            {
+                var textBox = (TextBox)item;
+                textBox.SelectAll();
+            }
         }
     }
 }

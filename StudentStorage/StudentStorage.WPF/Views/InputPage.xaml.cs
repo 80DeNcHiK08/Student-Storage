@@ -43,6 +43,7 @@ namespace StudentStorage.WPF.Views
                 AddButton.Content = "Save faculty";
                 NameField.Text = faculty.Name;
             }
+            NameField.Focus();
         }
 
         public InputPage(GroupViewModel group, string mode)
@@ -65,6 +66,7 @@ namespace StudentStorage.WPF.Views
                 AddButton.Content = "Save group";
                 NameField.Text = group.Name;
             }
+            NameField.Focus();
         }
         private void AddOrModify()
         {
@@ -165,6 +167,16 @@ namespace StudentStorage.WPF.Views
                 AddButton.Opacity = 0.7;
                 AddNextButton.IsEnabled = false;
                 AddNextButton.Opacity = 0.7;
+            }
+        }
+
+        private void SelectText(object sender, RoutedEventArgs e)
+        {
+            var item = e.OriginalSource as UIElement;
+            if (item != null)
+            {
+                var textBox = (TextBox)item;
+                textBox.SelectAll();
             }
         }
     }

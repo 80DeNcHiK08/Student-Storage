@@ -27,6 +27,7 @@ namespace StudentStorage.WPF.Views
             InitializeComponent();
             this.Title = gname;
             DataContext = this;
+            StudentLName.Focus();
         }
 
         public StudentInput(StudentViewModel student)
@@ -41,6 +42,7 @@ namespace StudentStorage.WPF.Views
             StudentSName.Text = student.ConcatedName.Split(' ')[2];
             StudentBDate.Value = new DateTime(int.Parse(student.BirthDate.Split('.')[2].Substring(0, student.BirthDate.Split('.')[2].IndexOf(' '))), int.Parse(student.BirthDate.Split('.')[1]), int.Parse(student.BirthDate.Split('.')[0]));
             StudentAM.Value = Double.Parse(student.AM);
+            StudentLName.Focus();
         }
 
         private void AddOrModify()
@@ -132,6 +134,16 @@ namespace StudentStorage.WPF.Views
             else
             {
                 return true;
+            }
+        }
+
+        private void SelectText(object sender, RoutedEventArgs e)
+        {
+            var item = e.OriginalSource as UIElement;
+            if(item != null)
+            {
+                var textBox = (TextBox)item;
+                textBox.SelectAll();
             }
         }
     }

@@ -14,7 +14,7 @@
             </Label.Content>
         </Label>
 
-        <TextBox x:Name="StudentLName" TextChanged="ValueChanged" Grid.Row="1" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" />
+        <TextBox x:Name="StudentLName" GotFocus="SelectText" TextChanged="ValueChanged" Grid.Row="1" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" />
 
         <Label Grid.Row="2" VerticalAlignment="Center" FontSize="16" Margin="5,0" Background="{DynamicResource BGColor}">
             <Label.Content>
@@ -22,7 +22,7 @@
             </Label.Content>
         </Label>
 
-        <TextBox x:Name="StudentFName" TextChanged="ValueChanged" Grid.Row="3" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+        <TextBox x:Name="StudentFName" GotFocus="SelectText" TextChanged="ValueChanged" Grid.Row="3" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
 
         <Label Grid.Row="4" VerticalAlignment="Center" Margin="5,0" Background="{DynamicResource BGColor}">
             <Label.Content>
@@ -30,7 +30,7 @@
             </Label.Content>
         </Label>
 
-        <TextBox x:Name="StudentSName" TextChanged="ValueChanged" Grid.Row="5" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+        <TextBox x:Name="StudentSName" GotFocus="SelectText" TextChanged="ValueChanged" Grid.Row="5" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
 
         <Grid Margin="0,10">
             <Grid.ColumnDefinitions>
