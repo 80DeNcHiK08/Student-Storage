@@ -104,6 +104,9 @@
     <Compile Include="Views\RuleInput.xaml.cs">
       <DependentUpon>RuleInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ScoolarshipList.xaml.cs">
+      <DependentUpon>ScoolarshipList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ScoolarshipRules.xaml.cs">
       <DependentUpon>ScoolarshipRules.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RuleInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScoolarshipList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

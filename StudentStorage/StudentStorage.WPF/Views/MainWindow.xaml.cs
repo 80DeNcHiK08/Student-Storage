@@ -150,6 +150,8 @@ namespace StudentStorage.WPF.Views
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
                     Modify_Button.IsEnabled = true;
+                    SSListButton.IsEnabled = true;
+                    SSListButton.Opacity = 1;
 
                     SelectedItem = (GroupViewModel)tvi.DataContext;
                     SelectedGroup = (GroupViewModel)tvi.DataContext;
@@ -188,6 +190,8 @@ namespace StudentStorage.WPF.Views
                 Delete_Button.Opacity = 0.7;
                 Modify_Button.Opacity = 0.7;
                 Modify_Button.IsEnabled = false;
+                SSListButton.IsEnabled = false;
+                SSListButton.Opacity = 0.7;
 
                 AM_TB.Content = "";
             }
@@ -541,7 +545,29 @@ namespace StudentStorage.WPF.Views
             Delete_Button.Opacity = 0.7;
             Modify_Button.Opacity = 0.7;
             Modify_Button.IsEnabled = false;
+            SSListButton.IsEnabled = false;
+            SSListButton.Opacity = 0.7;
             AM_TB.Content = "";
+        }
+
+        private void ShowScoolarships(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
+            {
+                ScoolarshipList sl = new ScoolarshipList((GroupViewModel)SelectedItem);
+                sl.Owner = this;
+                sl.Resources["BorderColor"] = Resources["BorderColor"];
+                sl.Resources["ButtonColor"] = Resources["ButtonColor"];
+                sl.Resources["BGColor"] = Resources["BGColor"];
+                sl.Resources["TextColor"] = Resources["TextColor"];
+                sl.Resources["FontStyle"] = Resources["FontStyle"];
+                sl.Resources["FontFamily"] = Resources["FontFamily"];
+                sl.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                sl.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                sl.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
+                sl.Show();
+            }
         }
 
         private void Find(object sender, System.Windows.Controls.TextChangedEventArgs e)

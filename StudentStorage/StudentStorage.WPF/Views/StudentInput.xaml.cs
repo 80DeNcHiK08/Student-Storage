@@ -127,7 +127,7 @@ namespace StudentStorage.WPF.Views
 
         private bool FieldsFilledCorrectly()
         {
-            if (StudentBDate.Value == null || StudentAM.Value == null || StudentAM.Value < 0  || StudentAM.Value > 100 || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
+            if (StudentBDate.Value == null || StudentAM.Value == null || StudentAM.Value < 0  || StudentAM.Value > 100 || Double.Parse(StudentAM.Text) > 100 || Double.Parse(StudentAM.Text) < 0 || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
             {
                 return false;
             }

@@ -64,7 +64,7 @@
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type vm:StudentViewModel}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ShortName}" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text="{Binding ConcatedName}" Foreground="{DynamicResource TextColor}"/>
                             <TextBlock Text=" Age:" Foreground="{DynamicResource TextColor}"/>
                             <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
@@ -76,10 +76,11 @@
             <Label x:Name="AM_TB" Content="" Margin="0,5" BorderThickness="1" FontSize="{DynamicResource FontSizeSmall}" BorderBrush="{DynamicResource BorderColor}" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}"/>
 
             <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button x:Name="Add_Info_Button" Grid.Column="0" Height="30" Width="100" Content="_Add faculty..." Margin="10" BorderBrush="{DynamicResource BorderColor}" Click="Add" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-                <Button x:Name="Delete_Button" Grid.Column="1" Height="30" Width="100" Content="_Delete" Margin="10" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="DeleteCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-                <Button x:Name="Modify_Button" Grid.Column="2" Height="30" Width="100" Content="_Modify..." Margin="10" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="ModifyCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-                <Button x:Name="Delete_All_Button" Grid.Column="3" Height="30" Width="100" Content="D_elete all" Margin="10" Opacity="0.7" IsEnabled="false" BorderBrush="{DynamicResource BorderColor}" Click="DeleteAll" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Add_Info_Button" Grid.Column="0" Height="30" Width="100" Content="_Add faculty..." Margin="5" BorderBrush="{DynamicResource BorderColor}" Click="Add" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Delete_Button" Grid.Column="1" Height="30" Width="100" Content="_Delete" Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="DeleteCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Modify_Button" Grid.Column="2" Height="30" Width="100" Content="_Modify..." Margin="5" Opacity="0.7" IsEnabled="False" BorderBrush="{DynamicResource BorderColor}" Click="ModifyCurrent" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="Delete_All_Button" Grid.Column="3" Height="30" Width="100" Content="D_elete all" Margin="5" Opacity="0.7" IsEnabled="false" BorderBrush="{DynamicResource BorderColor}" Click="DeleteAll" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+                <Button x:Name="SSListButton" Grid.Column="3" Height="30" Width="100" Content="_Scoolarships" Margin="5" Opacity="0.7" IsEnabled="false" BorderBrush="{DynamicResource BorderColor}" Click="ShowScoolarships" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
             </WrapPanel>
 
             <Label Content="Type any name from collection to search: " FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource BGColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
@@ -112,11 +113,8 @@
                     <DataTemplate DataType="{x:Type vm:StudentViewModel}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding ConcatedName}" Foreground="{DynamicResource TextColor}"/>
-                            <TextBlock Text=" (" Foreground="{DynamicResource TextColor}"/>
+                            <TextBlock Text=" Age:" Foreground="{DynamicResource TextColor}"/>
                             <TextBlock Text="{Binding Age}" Foreground="{DynamicResource TextColor}"/>
-                            <TextBlock Text=" years old) " Foreground="{DynamicResource TextColor}"/>
-                            <TextBlock Text="AM: " Foreground="{DynamicResource TextColor}"/>
-                            <TextBlock Text="{Binding AM}" Foreground="{DynamicResource TextColor}"/>
                         </StackPanel>
                     </DataTemplate>
                 </TreeView.Resources>
