@@ -132,7 +132,14 @@ namespace StudentStorage.WPF.Views
 
                     SelectedItem = (FacultyViewModel)tvi.DataContext;
                     SelectedFaculty = (FacultyViewModel)tvi.DataContext;
-                    AM_TB.Content = "Faculty average mark: " + SelectedFaculty.AM;
+                    bool hasstuds = false;
+                    foreach(var group in SelectedFaculty.Groups)
+                    {
+                        if (group.Students.Count != 0)
+                            hasstuds = true;
+                    }
+                    AM_TB.Content = (hasstuds) ? "Faculty average mark: " + SelectedFaculty.AM
+                        : "";
                 }
                 if (tvi.DataContext.GetType().Name == SelectedGroup.GetType().Name)
                 {
@@ -146,7 +153,7 @@ namespace StudentStorage.WPF.Views
 
                     SelectedItem = (GroupViewModel)tvi.DataContext;
                     SelectedGroup = (GroupViewModel)tvi.DataContext;
-                    AM_TB.Content = "Group average mark: " + SelectedGroup.AM;
+                    AM_TB.Content = (SelectedGroup.Students.Count != 0) ? "Group average mark: " + SelectedGroup.AM : "";
                 }
                 if (tvi.DataContext.GetType().Name == SelectedStudent.GetType().Name)
                 {
@@ -157,6 +164,7 @@ namespace StudentStorage.WPF.Views
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
                     Modify_Button.IsEnabled = true;
+
 
                     SelectedItem = (StudentViewModel)tvi.DataContext;
                     SelectedStudent = (StudentViewModel)tvi.DataContext;
@@ -197,6 +205,13 @@ namespace StudentStorage.WPF.Views
             }
             TreeViewAll.ItemsSource = null;
             TreeViewAll.ItemsSource = CollectionView;
+            Delete_All_Button.IsEnabled = true;
+            Delete_All_Button.Opacity = 1;
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void Save(object sender, RoutedEventArgs e)
@@ -331,6 +346,7 @@ namespace StudentStorage.WPF.Views
             {
                 InputPage ip = new InputPage(new FacultyViewModel(), "Add");
                 ip.Owner = this;
+
                 ip.Resources["BorderColor"] = Resources["BorderColor"];
                 ip.Resources["ButtonColor"] = Resources["ButtonColor"];
                 ip.Resources["BGColor"] = Resources["BGColor"];
@@ -345,14 +361,17 @@ namespace StudentStorage.WPF.Views
 
                 TreeViewAll.ItemsSource = null;
                 TreeViewAll.ItemsSource = CollectionView;
+                Delete_All_Button.IsEnabled = true;
+                Delete_All_Button.Opacity = 1;
                 return;
             }
 
             if(SelectedItem.GetType().Name == SelectedFaculty.GetType().Name)
             {
                 SelectedFaculty = (FacultyViewModel)SelectedItem;
-                InputPage ip = new InputPage(new GroupViewModel(), "Add");
+                InputPage ip = new InputPage(new GroupViewModel() { Parent = SelectedFaculty }, "Add");
                 ip.Owner = this;
+
                 ip.Resources["BorderColor"] = Resources["BorderColor"];
                 ip.Resources["ButtonColor"] = Resources["ButtonColor"];
                 ip.Resources["BGColor"] = Resources["BGColor"];
@@ -372,8 +391,9 @@ namespace StudentStorage.WPF.Views
             if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
             {
                 SelectedGroup = (GroupViewModel)SelectedItem;
-                StudentInput si = new StudentInput();
+                StudentInput si = new StudentInput("Add new student to group \"" + SelectedGroup.Name + "\"");
                 si.Owner = this;
+
                 si.Resources["BorderColor"] = Resources["BorderColor"];
                 si.Resources["ButtonColor"] = Resources["ButtonColor"];
                 si.Resources["BGColor"] = Resources["BGColor"];

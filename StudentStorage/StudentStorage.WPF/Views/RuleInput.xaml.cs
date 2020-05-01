@@ -49,6 +49,8 @@ namespace StudentStorage.WPF.Views
              ((MainWindow)((ScoolarshipRules)Owner).Owner).Rules.Add(rule);
 
             ((ScoolarshipRules)Owner).UpdateView();
+            ((ScoolarshipRules)Owner).DeleteAllButton.IsEnabled = true;
+            ((ScoolarshipRules)Owner).DeleteAllButton.Opacity = 0.7;
             ((MainWindow)((ScoolarshipRules)Owner).Owner).UpdateView();
         }
 
@@ -77,7 +79,7 @@ namespace StudentStorage.WPF.Views
 
         private void ValueChanged(object sender, RoutedEventArgs e)
         {
-            if (NameField.Text != string.Empty && Mark.Value != null && Percent.Value != null)
+            if (NameField.Text != string.Empty && Mark.Value != null && Percent.Value != null && NumberFieldsCorrect())
             {
                 AddButton.IsEnabled = true;
                 AddButton.Opacity = 1;
@@ -91,6 +93,11 @@ namespace StudentStorage.WPF.Views
                 AddNextButton.IsEnabled = false;
                 AddNextButton.Opacity = 0.7;
             }
+        }
+
+        private bool NumberFieldsCorrect()
+        {
+            return (Percent.Value < 0 || Percent.Value > 100 || Mark.Value < 0 || Mark.Value > 100) ? true : false;
         }
     }
 }

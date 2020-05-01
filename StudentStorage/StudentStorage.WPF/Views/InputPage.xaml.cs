@@ -53,7 +53,7 @@ namespace StudentStorage.WPF.Views
             this.CurrentType = "Group";
             if (Mode == "Add")
             {
-                this.Title = "Add new group";
+                this.Title = "Add new group to \"" + group.Parent.Name + "\"";
                 AddNextButton.Content = "Add next group";
                 AddButton.Content = "Save group";
             }

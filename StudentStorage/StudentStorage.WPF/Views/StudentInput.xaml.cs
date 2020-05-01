@@ -22,10 +22,10 @@ namespace StudentStorage.WPF.Views
     public partial class StudentInput : Window
     {
         private string Mode = "Add";
-        public StudentInput()
+        public StudentInput(string gname)
         {
             InitializeComponent();
-            this.Title = "Add new student";
+            this.Title = gname;
             DataContext = this;
         }
 
@@ -125,7 +125,7 @@ namespace StudentStorage.WPF.Views
 
         private bool FieldsFilledCorrectly()
         {
-            if (StudentBDate.Value == null || StudentAM.Value == null || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
+            if (StudentBDate.Value == null || StudentAM.Value == null || StudentAM.Value < 0  || StudentAM.Value > 100 || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
             {
                 return false;
             }

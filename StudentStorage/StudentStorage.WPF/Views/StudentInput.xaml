@@ -10,7 +10,7 @@
     <StackPanel Margin="10,0" Background="{DynamicResource BGColor}">
         <Label Grid.Row="0" VerticalAlignment="Center" Margin="5,0" Background="{DynamicResource BGColor}">
             <Label.Content>
-                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter student last name:" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter last name:" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
             </Label.Content>
         </Label>
 
@@ -18,7 +18,7 @@
 
         <Label Grid.Row="2" VerticalAlignment="Center" FontSize="16" Margin="5,0" Background="{DynamicResource BGColor}">
             <Label.Content>
-                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter student first name:" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter first name:" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
             </Label.Content>
         </Label>
 
@@ -26,7 +26,7 @@
 
         <Label Grid.Row="4" VerticalAlignment="Center" Margin="5,0" Background="{DynamicResource BGColor}">
             <Label.Content>
-                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter student second name:" Background="{DynamicResource BGColor}"  Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter second name:" Background="{DynamicResource BGColor}"  Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
             </Label.Content>
         </Label>
 
@@ -49,7 +49,7 @@
             </Label>
             <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="14" Margin="5,0" Background="{DynamicResource BGColor}">
                 <Label.Content>
-                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Enter student's average mark: " Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Student's average mark: " Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
                 </Label.Content>
             </Label>
 
