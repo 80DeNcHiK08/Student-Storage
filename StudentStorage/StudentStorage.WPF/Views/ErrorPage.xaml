@@ -19,6 +19,6 @@
                 </Label.Content>
             </Label>
         </ScrollViewer>
-        <Button Grid.Row="1" x:Name="OKButton" Content="OK" Click="OKClick" Margin="5" Width="95" Height="25" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+        <Button Grid.Row="1" x:Name="OKButton" Content="_OK" Click="OKClick" Margin="5" Width="95" Height="25" VerticalAlignment="Center" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" BorderBrush="{DynamicResource BorderColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
     </Grid>
 </Window>

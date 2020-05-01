@@ -32,15 +32,15 @@ namespace StudentStorage.WPF.Views
             if(Mode == "Add")
             {
                 this.Title = "Add new faculty";
-                AddNextButton.Content = "Add next faculty";
-                AddButton.Content = "Save faculty";
+                AddNextButton.Content = "_Add next faculty";
+                AddButton.Content = "_Save faculty";
             }
 
             if(Mode == "Modify")
             {
                 this.Title = "Modify \"" + faculty.Name + "\" faculty";
                 AddNextButton.Visibility = Visibility.Hidden;
-                AddButton.Content = "Save faculty";
+                AddButton.Content = "_Save faculty";
                 NameField.Text = faculty.Name;
             }
             NameField.Focus();
@@ -55,15 +55,15 @@ namespace StudentStorage.WPF.Views
             if (Mode == "Add")
             {
                 this.Title = "Add new group to \"" + group.Parent.Name + "\"";
-                AddNextButton.Content = "Add next group";
-                AddButton.Content = "Save group";
+                AddNextButton.Content = "_Add next group";
+                AddButton.Content = "_Save group";
             }
 
             if (Mode == "Modify")
             {
                 this.Title = "Modify \"" + group.Name + "\" group";
                 AddNextButton.Visibility = Visibility.Hidden;
-                AddButton.Content = "Save group";
+                AddButton.Content = "_Save group";
                 NameField.Text = group.Name;
             }
             NameField.Focus();

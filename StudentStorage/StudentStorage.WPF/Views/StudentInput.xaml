@@ -64,9 +64,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="AddNextButton" Grid.Column="0" IsEnabled="False" Opacity="0.7" Content="Add Next" VerticalContentAlignment="Center" Margin="5,10" Click="AddNext" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
-            <Button x:Name="AddButton" Grid.Column="1" IsEnabled="False" Opacity="0.7" Content="Save Student" VerticalContentAlignment="Center" Margin="5,10" Click="SaveCurrent" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
-            <Button x:Name="CancelButton" Grid.Column="2" Content="Cancel" VerticalContentAlignment="Center" Margin="5,10" Click="Cancel" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
+            <Button x:Name="AddNextButton" Grid.Column="0" IsEnabled="False" Opacity="0.7" Content="_Add Next" VerticalContentAlignment="Center" Margin="5,10" Click="AddNext" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
+            <Button x:Name="AddButton" Grid.Column="1" IsEnabled="False" Opacity="0.7" Content="_Save Student" VerticalContentAlignment="Center" Margin="5,10" Click="SaveCurrent" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
+            <Button x:Name="CancelButton" Grid.Column="2" Content="_Cancel" VerticalContentAlignment="Center" Margin="5,10" Click="Cancel" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
         </Grid>
     </StackPanel>
 </Window>

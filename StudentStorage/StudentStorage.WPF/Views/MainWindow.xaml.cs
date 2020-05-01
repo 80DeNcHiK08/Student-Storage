@@ -122,9 +122,9 @@ namespace StudentStorage.WPF.Views
             {
                 if (tvi.DataContext.GetType().Name == SelectedFaculty.GetType().Name)
                 {
-                    Add_Info_Button.Content = "Add group...";
-                    Delete_Button.Content = "Delete faculty";
-                    Modify_Button.Content = "Modify faculty...";
+                    Add_Info_Button.Content = "_Add group...";
+                    Delete_Button.Content = "_Delete faculty";
+                    Modify_Button.Content = "_Modify faculty...";
                     Delete_Button.IsEnabled = true;
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
@@ -143,9 +143,9 @@ namespace StudentStorage.WPF.Views
                 }
                 if (tvi.DataContext.GetType().Name == SelectedGroup.GetType().Name)
                 {
-                    Add_Info_Button.Content = "Add student...";
-                    Delete_Button.Content = "Delete group";
-                    Modify_Button.Content = "Modify group...";
+                    Add_Info_Button.Content = "_Add student...";
+                    Delete_Button.Content = "_Delete group";
+                    Modify_Button.Content = "_Modify group...";
                     Delete_Button.IsEnabled = true;
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
@@ -157,9 +157,9 @@ namespace StudentStorage.WPF.Views
                 }
                 if (tvi.DataContext.GetType().Name == SelectedStudent.GetType().Name)
                 {
-                    Add_Info_Button.Content = "More info...";
-                    Delete_Button.Content = "Delete student";
-                    Modify_Button.Content = "Modify student...";
+                    Add_Info_Button.Content = "_More info...";
+                    Delete_Button.Content = "_Delete student";
+                    Modify_Button.Content = "_Modify student...";
                     Delete_Button.IsEnabled = true;
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
@@ -181,9 +181,9 @@ namespace StudentStorage.WPF.Views
                 treeView.Focus();
                 SelectedItem = null;
 
-                Add_Info_Button.Content = "Add faculty...";
-                Delete_Button.Content = "Delete";
-                Modify_Button.Content = "Modify...";
+                Add_Info_Button.Content = "_Add faculty...";
+                Delete_Button.Content = "_Delete";
+                Modify_Button.Content = "_Modify...";
                 Delete_Button.IsEnabled = false;
                 Delete_Button.Opacity = 0.7;
                 Modify_Button.Opacity = 0.7;
@@ -532,9 +532,9 @@ namespace StudentStorage.WPF.Views
             CollectionView.Clear();
             CollectionSResultsView.Clear();
             TreeViewAll.ItemsSource = TreeViewSResult.ItemsSource = null;
-            Add_Info_Button.Content = "Add faculty...";
-            Delete_Button.Content = "Delete";
-            Modify_Button.Content = "Modify...";
+            Add_Info_Button.Content = "_Add faculty...";
+            Delete_Button.Content = "_Delete";
+            Modify_Button.Content = "_Modify...";
             Delete_All_Button.IsEnabled = false;
             Delete_All_Button.Opacity = 0.7;
             Delete_Button.IsEnabled = false;

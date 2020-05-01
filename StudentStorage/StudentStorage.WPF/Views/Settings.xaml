@@ -82,8 +82,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Apply" Width="120" Height="30" Click="ApplyClick" BorderBrush="{DynamicResource BorderColor}" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
-            <Button Grid.Column="1" Content="Cancel" Width="120" Height="30" Click="CancelClick" BorderBrush="{DynamicResource BorderColor}" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            <Button Grid.Column="0" Content="_Apply" Width="120" Height="30" Click="ApplyClick" BorderBrush="{DynamicResource BorderColor}" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
+            <Button Grid.Column="1" Content="_Cancel" Width="120" Height="30" Click="CancelClick" BorderBrush="{DynamicResource BorderColor}" FontSize="{DynamicResource FontSizeSmall}" Background="{DynamicResource ButtonColor}" FontFamily="{DynamicResource FontFamily}" Foreground="{DynamicResource TextColor}"/>
         </Grid>
     </StackPanel>
 </Window>
