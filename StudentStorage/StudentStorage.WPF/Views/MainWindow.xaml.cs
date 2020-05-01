@@ -599,16 +599,20 @@ namespace StudentStorage.WPF.Views
                     if(hasStudRes)
                     {
                         fvm.Groups.Add(gvm);
+                        hasStudRes = false;
+                        hasGroupRes = true;
                         continue;
                     }
                     if (group.Name.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))
                     {
                         fvm.Groups.Add(gvm);
+                        hasGroupRes = true;
                     }
                 }
                 if(hasGroupRes || hasStudRes)
                 {
                     CollectionSResultsView.Add(fvm);
+                    hasGroupRes = false;
                     continue;
                 }
                 if (faculty.Name.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))
