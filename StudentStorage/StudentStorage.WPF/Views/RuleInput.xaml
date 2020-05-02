@@ -22,8 +22,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <xctk:DoubleUpDown x:Name="Mark" GotFocus="SelectText" ValueChanged="ValueChanged" Grid.Column="0" Grid.Row="3" Margin="5" Watermark="Minimal mark" HorizontalContentAlignment="Left" Increment="0.2" Minimum="0" Maximum="100" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
-            <xctk:DoubleUpDown x:Name="Percent" GotFocus="SelectText" ValueChanged="ValueChanged" Grid.Column="1" Grid.Row="3" Margin="5" Watermark="Percent of students" HorizontalContentAlignment="Left" Increment="0.5" Minimum="0" Maximum="100" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+            <xctk:DoubleUpDown x:Name="Mark" GotFocus="SelectText" ValueChanged="ValueChanged" Grid.Column="0" Grid.Row="3" Margin="5" Watermark="Minimal mark" HorizontalContentAlignment="Left" Increment="0.2" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+            <xctk:DoubleUpDown x:Name="Percent" GotFocus="SelectText" ValueChanged="ValueChanged" Grid.Column="1" Grid.Row="3" Margin="5" Watermark="Percent of students" HorizontalContentAlignment="Left" Increment="0.5" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
         </Grid>
         
         <Grid Height="50" VerticalAlignment="Bottom">

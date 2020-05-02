@@ -98,7 +98,10 @@ namespace StudentStorage.WPF.Views
 
         private bool NumberFieldsCorrect()
         {
-            return (Percent.Value < 0 || Percent.Value > 100 || Mark.Value < 0 || Mark.Value > 100) ? true : false;
+            double a, b;
+            if (!Double.TryParse(Percent.Text, out a) || !Double.TryParse(Mark.Text, out b))
+                return false;
+            return (NameField.Text == string.Empty || a < 0 || a > 100 || b < 0 || b > 100) ? false : true;
         }
 
         private void SelectText(object sender, RoutedEventArgs e)

@@ -20,14 +20,23 @@ namespace StudentStorage.WPF.Views
     /// </summary>
     public partial class ScoolarshipList : Window
     {
-        private GroupViewModel Group { get; set; }
+        private GroupViewModel Group { get; set; } = new GroupViewModel();
         public ScoolarshipList(GroupViewModel group)
         {
             InitializeComponent();
             DataContext = this;
-            Group = group;
             this.Title = "Scoolarship list for \"" + group.Name +"\"";
+            foreach (var stud in group.Students)
+            {
+                if (stud.SponsorType != "none")
+                    Group.Students.Add(stud);
+            }
             TreeViewAll.ItemsSource = Group.Students;
+        }
+
+        private void Resize(object sender, RoutedEventArgs e)
+        {
+            //TreeViewAll.Height = this.ActualHeight - 85;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)

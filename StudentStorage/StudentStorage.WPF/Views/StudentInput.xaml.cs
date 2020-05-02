@@ -109,7 +109,7 @@ namespace StudentStorage.WPF.Views
 
         private void ValueChanged(object sender, RoutedEventArgs e)
         {
-            if(FieldsFilledCorrectly())
+            if(FieldsFilledCorrectly(e as TextChangedEventArgs))
             {
                 AddButton.IsEnabled = true;
                 AddButton.Opacity = 1;
@@ -125,15 +125,22 @@ namespace StudentStorage.WPF.Views
             }
         }
 
-        private bool FieldsFilledCorrectly()
+        private bool FieldsFilledCorrectly(TextChangedEventArgs e)
         {
-            if (StudentBDate.Value == null || StudentAM.Value == null || StudentAM.Value < 0  || StudentAM.Value > 100 || Double.Parse(StudentAM.Text) > 100 || Double.Parse(StudentAM.Text) < 0 || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
+            double a;
+            if(Double.TryParse(StudentAM.Text, out a))
+            {
+                if (a < 0 || a > 100)
+                    return false;
+                if(StudentBDate == null || StudentBDate.Value.GetValueOrDefault().Year > DateTime.Now.Year - 15)
+                    return false;
+                if(StudentAM.Value == null || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
+                    return false;
+                else
+                    return true;
+            } else
             {
                 return false;
-            }
-            else
-            {
-                return true;
             }
         }
 

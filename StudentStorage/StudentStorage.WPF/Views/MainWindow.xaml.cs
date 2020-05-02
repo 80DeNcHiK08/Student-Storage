@@ -115,6 +115,13 @@ namespace StudentStorage.WPF.Views
             TreeViewSResult.ItemsSource = CollectionSResultsView;
         }
 
+        private void Resize(object sender, RoutedEventArgs e)
+        {
+            double offset = Label_1.ActualHeight + Stack_2.ActualHeight;
+            double containersize = (this.ActualHeight - offset - 100) / 2;
+            TreeViewAll.Height = TreeViewSResult.Height = containersize;
+        }
+
         private void TreeViewSelected(object sender, RoutedEventArgs e)
         {
             TreeViewItem tvi = e.OriginalSource as TreeViewItem;

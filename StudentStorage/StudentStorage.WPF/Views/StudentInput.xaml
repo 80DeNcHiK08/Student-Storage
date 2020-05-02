@@ -54,7 +54,7 @@
             </Label>
 
             <xctk:DateTimePicker x:Name="StudentBDate" ValueChanged="ValueChanged" Grid.Column="0" Grid.Row="3" Margin="5" Watermark="Birth date" TextAlignment="Left" HorizontalContentAlignment="Left" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
-            <xctk:DoubleUpDown x:Name="StudentAM" ValueChanged="ValueChanged" Grid.Column="1" Grid.Row="3" Margin="5" Watermark="Average Mark" HorizontalContentAlignment="Left" Increment="0.2" Minimum="0" Maximum="100" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+            <xctk:DoubleUpDown x:Name="StudentAM" ValueChanged="ValueChanged" Grid.Column="1" Grid.Row="3" Margin="5" Watermark="Average Mark" HorizontalContentAlignment="Left" Increment="0.2" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
         </Grid>
 
         <Grid Height="50" VerticalAlignment="Bottom">
