@@ -22,11 +22,12 @@ namespace StudentStorage.WPF.Views
     public partial class StudentInput : Window
     {
         private string Mode = "Add";
-        public StudentInput()
+        public StudentInput(string gname)
         {
             InitializeComponent();
-            this.Title = "Add new student";
+            this.Title = gname;
             DataContext = this;
+            StudentLName.Focus();
         }
 
         public StudentInput(StudentViewModel student)
@@ -41,6 +42,7 @@ namespace StudentStorage.WPF.Views
             StudentSName.Text = student.ConcatedName.Split(' ')[2];
             StudentBDate.Value = new DateTime(int.Parse(student.BirthDate.Split('.')[2].Substring(0, student.BirthDate.Split('.')[2].IndexOf(' '))), int.Parse(student.BirthDate.Split('.')[1]), int.Parse(student.BirthDate.Split('.')[0]));
             StudentAM.Value = Double.Parse(student.AM);
+            StudentLName.Focus();
         }
 
         private void AddOrModify()
@@ -107,7 +109,7 @@ namespace StudentStorage.WPF.Views
 
         private void ValueChanged(object sender, RoutedEventArgs e)
         {
-            if(FieldsFilledCorrectly())
+            if(FieldsFilledCorrectly(e as TextChangedEventArgs))
             {
                 AddButton.IsEnabled = true;
                 AddButton.Opacity = 1;
@@ -123,15 +125,32 @@ namespace StudentStorage.WPF.Views
             }
         }
 
-        private bool FieldsFilledCorrectly()
+        private bool FieldsFilledCorrectly(TextChangedEventArgs e)
         {
-            if (StudentBDate.Value == null || StudentAM.Value == null || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
+            double a;
+            if(Double.TryParse(StudentAM.Text, out a))
+            {
+                if (a < 0 || a > 100)
+                    return false;
+                if(StudentBDate == null || StudentBDate.Value.GetValueOrDefault().Year > DateTime.Now.Year - 15)
+                    return false;
+                if(StudentAM.Value == null || StudentFName.Text == string.Empty || StudentLName.Text == string.Empty || StudentSName.Text == string.Empty)
+                    return false;
+                else
+                    return true;
+            } else
             {
                 return false;
             }
-            else
+        }
+
+        private void SelectText(object sender, RoutedEventArgs e)
+        {
+            var item = e.OriginalSource as UIElement;
+            if(item != null)
             {
-                return true;
+                var textBox = (TextBox)item;
+                textBox.SelectAll();
             }
         }
     }

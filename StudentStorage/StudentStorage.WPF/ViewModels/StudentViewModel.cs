@@ -10,6 +10,7 @@ namespace StudentStorage.WPF.ViewModels
     public class StudentViewModel
     {
         public string ConcatedName { get; set; }
+        public string ShortName { get; set; }
         public int Age { get; set; }
         public string BirthDate { get; set; }
         public string AM { get; set; }
@@ -20,6 +21,7 @@ namespace StudentStorage.WPF.ViewModels
         {
             this.Parent = parent;
             this.ConcatedName = student.LastName + " " + student.FirstName + " " + student.MiddleName;
+            this.ShortName = student.LastName + " " + student.FirstName.Substring(1) + ". " + student.MiddleName.Substring(1) + ".";
             this.AM = String.Format("{0:0.#}", student.MiddleGrade.ToString());
             this.BirthDate = student.BirthDate.Date.ToString();
             this.Age = DateTime.Now.Year - student.BirthDate.Year - 1 + 

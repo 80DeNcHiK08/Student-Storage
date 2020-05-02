@@ -104,7 +104,7 @@ namespace StudentStorage.Collection
 
         public bool Equals(Student student)
         {
-            //
+            if (ReferenceEquals(student, null)) return false;
             return FirstName == student.FirstName &&
                    LastName == student.LastName &&
                    MiddleName == student.MiddleName &&
@@ -139,10 +139,6 @@ namespace StudentStorage.Collection
                     if (result == 0)
                     {
                         result = BirthDate.CompareTo(student2.BirthDate);
-                        if (result == 0)
-                        {
-                            result = MiddleGrade.CompareTo(student2.MiddleGrade);
-                        }
                     }
                 }
             }

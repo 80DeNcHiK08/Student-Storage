@@ -22,6 +22,6 @@
                 <TextBlock x:Name="WPFCopyrightLabel" Text="" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
             </Label.Content>
         </Label>
-        <Button x:Name="ExitButton" Content="OK" HorizontalAlignment="Center" Width="95" Height="25" Margin="0,15" Click="OK_Click" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}"/>
+        <Button x:Name="ExitButton" Content="_OK" HorizontalAlignment="Center" Width="95" Height="25" Margin="0,15" Click="OK_Click" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}"/>
     </StackPanel>
 </Window>

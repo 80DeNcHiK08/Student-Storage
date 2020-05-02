@@ -11,6 +11,7 @@ namespace StudentStorage.Collection
         protected Node<TKey, TValue> Root;
         protected IComparer<Node<TKey, TValue>> comparer;
         private SerializationInfo siInfo;
+        public List<Node<TKey, TValue>> LeftMosts { get; set; } = new List<Node<TKey, TValue>>();
         public BinaryTree() : this(Comparer<Node<TKey, TValue>>.Default) { }
         public BinaryTree(IComparer<Node<TKey, TValue>> defaultComparer)
         {
@@ -51,6 +52,52 @@ namespace StudentStorage.Collection
                 while (current.Right != null)
                     current = current.Right;
                 return current;
+            }
+        }
+        private void FillLeftMosts()
+        {
+            if (Root == null)
+                throw new InvalidOperationException("Tree is empty");
+            var current = Root;
+            while (current.Right != null)
+            {
+                LeftMosts.Add(current);
+                current = current.Right;
+            }
+        }
+        private void ConnectPairs(Node<TKey, TValue> temp)
+        {
+            if(temp == null)
+                return;
+
+            Queue<Node<TKey, TValue>> queue = new Queue<Node<TKey, TValue>>();
+            Node<TKey, TValue> prev = null, current = null;
+            queue.Enqueue(temp);
+            queue.Enqueue(null);
+
+            while(queue.Count > 1)
+            {
+                current = queue.Dequeue();
+
+                if (current == null)
+                    queue.Enqueue(null);
+                else
+                {
+                    if(prev != null)
+                    {
+                        prev.Next = current;
+                        current.Prev = prev;
+                    }
+                    if(current.Left != null)
+                    {
+                        queue.Enqueue(current.Left);
+                    }
+                    if(current.Right != null)
+                    {
+                        queue.Enqueue(current.Right);
+                    }
+                }
+                prev = current;
             }
         }
         public void AddRange(IEnumerable<Node<TKey, TValue>> colletion)
@@ -134,6 +181,21 @@ namespace StudentStorage.Collection
             }
         }
         public IEnumerable<Node<TKey, TValue>> Levelorder()
+        {
+            if (Root == null)
+                yield break;
+
+            foreach(var node in LeftMosts)
+            {
+                var current = node;
+                while(current.Next != null)
+                {
+                    yield return current;
+                    current = current.Next;
+                }
+            }
+        }
+        public IEnumerable<Node<TKey, TValue>> LevelorderQueue()
         {
             if (Root == null)
                 yield break;
@@ -316,6 +378,9 @@ namespace StudentStorage.Collection
                     }
                 }
             }
+            FillLeftMosts();
+            Height = LeftMosts.Count;
+            ConnectPairs(Root);
             ++Count;
         }
         public virtual bool Remove(Node<TKey, TValue> node)
@@ -391,6 +456,9 @@ namespace StudentStorage.Collection
                         parent.Right = min;
                 }
             }
+            FillLeftMosts();
+            ConnectPairs(Root);
+            Height = LeftMosts.Count;
             --Count;
             return true;
         }

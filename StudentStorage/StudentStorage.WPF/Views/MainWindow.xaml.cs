@@ -115,6 +115,13 @@ namespace StudentStorage.WPF.Views
             TreeViewSResult.ItemsSource = CollectionSResultsView;
         }
 
+        private void Resize(object sender, RoutedEventArgs e)
+        {
+            double offset = Label_1.ActualHeight + Stack_2.ActualHeight;
+            double containersize = (this.ActualHeight - offset - 100) / 2;
+            TreeViewAll.Height = TreeViewSResult.Height = containersize;
+        }
+
         private void TreeViewSelected(object sender, RoutedEventArgs e)
         {
             TreeViewItem tvi = e.OriginalSource as TreeViewItem;
@@ -122,9 +129,9 @@ namespace StudentStorage.WPF.Views
             {
                 if (tvi.DataContext.GetType().Name == SelectedFaculty.GetType().Name)
                 {
-                    Add_Info_Button.Content = "Add group...";
-                    Delete_Button.Content = "Delete faculty";
-                    Modify_Button.Content = "Modify faculty...";
+                    Add_Info_Button.Content = "_Add group...";
+                    Delete_Button.Content = "_Delete faculty";
+                    Modify_Button.Content = "_Modify faculty...";
                     Delete_Button.IsEnabled = true;
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
@@ -132,31 +139,41 @@ namespace StudentStorage.WPF.Views
 
                     SelectedItem = (FacultyViewModel)tvi.DataContext;
                     SelectedFaculty = (FacultyViewModel)tvi.DataContext;
-                    AM_TB.Content = "Faculty average mark: " + SelectedFaculty.AM;
+                    bool hasstuds = false;
+                    foreach(var group in SelectedFaculty.Groups)
+                    {
+                        if (group.Students.Count != 0)
+                            hasstuds = true;
+                    }
+                    AM_TB.Content = (hasstuds) ? "Faculty average mark: " + SelectedFaculty.AM
+                        : "";
                 }
                 if (tvi.DataContext.GetType().Name == SelectedGroup.GetType().Name)
                 {
-                    Add_Info_Button.Content = "Add student...";
-                    Delete_Button.Content = "Delete group";
-                    Modify_Button.Content = "Modify group...";
+                    Add_Info_Button.Content = "_Add student...";
+                    Delete_Button.Content = "_Delete group";
+                    Modify_Button.Content = "_Modify group...";
+                    Delete_Button.IsEnabled = true;
+                    Delete_Button.Opacity = 1;
+                    Modify_Button.Opacity = 1;
+                    Modify_Button.IsEnabled = true;
+                    SSListButton.IsEnabled = true;
+                    SSListButton.Opacity = 1;
+
+                    SelectedItem = (GroupViewModel)tvi.DataContext;
+                    SelectedGroup = (GroupViewModel)tvi.DataContext;
+                    AM_TB.Content = (SelectedGroup.Students.Count != 0) ? "Group average mark: " + SelectedGroup.AM : "";
+                }
+                if (tvi.DataContext.GetType().Name == SelectedStudent.GetType().Name)
+                {
+                    Add_Info_Button.Content = "_More info...";
+                    Delete_Button.Content = "_Delete student";
+                    Modify_Button.Content = "_Modify student...";
                     Delete_Button.IsEnabled = true;
                     Delete_Button.Opacity = 1;
                     Modify_Button.Opacity = 1;
                     Modify_Button.IsEnabled = true;
 
-                    SelectedItem = (GroupViewModel)tvi.DataContext;
-                    SelectedGroup = (GroupViewModel)tvi.DataContext;
-                    AM_TB.Content = "Group average mark: " + SelectedGroup.AM;
-                }
-                if (tvi.DataContext.GetType().Name == SelectedStudent.GetType().Name)
-                {
-                    Add_Info_Button.Content = "More info...";
-                    Delete_Button.Content = "Delete student";
-                    Modify_Button.Content = "Modify student...";
-                    Delete_Button.IsEnabled = true;
-                    Delete_Button.Opacity = 1;
-                    Modify_Button.Opacity = 1;
-                    Modify_Button.IsEnabled = true;
 
                     SelectedItem = (StudentViewModel)tvi.DataContext;
                     SelectedStudent = (StudentViewModel)tvi.DataContext;
@@ -173,13 +190,15 @@ namespace StudentStorage.WPF.Views
                 treeView.Focus();
                 SelectedItem = null;
 
-                Add_Info_Button.Content = "Add faculty...";
-                Delete_Button.Content = "Delete";
-                Modify_Button.Content = "Modify...";
+                Add_Info_Button.Content = "_Add faculty...";
+                Delete_Button.Content = "_Delete";
+                Modify_Button.Content = "_Modify...";
                 Delete_Button.IsEnabled = false;
                 Delete_Button.Opacity = 0.7;
                 Modify_Button.Opacity = 0.7;
                 Modify_Button.IsEnabled = false;
+                SSListButton.IsEnabled = false;
+                SSListButton.Opacity = 0.7;
 
                 AM_TB.Content = "";
             }
@@ -197,6 +216,13 @@ namespace StudentStorage.WPF.Views
             }
             TreeViewAll.ItemsSource = null;
             TreeViewAll.ItemsSource = CollectionView;
+            Delete_All_Button.IsEnabled = true;
+            Delete_All_Button.Opacity = 1;
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void Save(object sender, RoutedEventArgs e)
@@ -331,6 +357,7 @@ namespace StudentStorage.WPF.Views
             {
                 InputPage ip = new InputPage(new FacultyViewModel(), "Add");
                 ip.Owner = this;
+
                 ip.Resources["BorderColor"] = Resources["BorderColor"];
                 ip.Resources["ButtonColor"] = Resources["ButtonColor"];
                 ip.Resources["BGColor"] = Resources["BGColor"];
@@ -345,14 +372,17 @@ namespace StudentStorage.WPF.Views
 
                 TreeViewAll.ItemsSource = null;
                 TreeViewAll.ItemsSource = CollectionView;
+                Delete_All_Button.IsEnabled = true;
+                Delete_All_Button.Opacity = 1;
                 return;
             }
 
             if(SelectedItem.GetType().Name == SelectedFaculty.GetType().Name)
             {
                 SelectedFaculty = (FacultyViewModel)SelectedItem;
-                InputPage ip = new InputPage(new GroupViewModel(), "Add");
+                InputPage ip = new InputPage(new GroupViewModel() { Parent = SelectedFaculty }, "Add");
                 ip.Owner = this;
+
                 ip.Resources["BorderColor"] = Resources["BorderColor"];
                 ip.Resources["ButtonColor"] = Resources["ButtonColor"];
                 ip.Resources["BGColor"] = Resources["BGColor"];
@@ -372,8 +402,9 @@ namespace StudentStorage.WPF.Views
             if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
             {
                 SelectedGroup = (GroupViewModel)SelectedItem;
-                StudentInput si = new StudentInput();
+                StudentInput si = new StudentInput("Add new student to group \"" + SelectedGroup.Name + "\"");
                 si.Owner = this;
+
                 si.Resources["BorderColor"] = Resources["BorderColor"];
                 si.Resources["ButtonColor"] = Resources["ButtonColor"];
                 si.Resources["BGColor"] = Resources["BGColor"];
@@ -512,16 +543,38 @@ namespace StudentStorage.WPF.Views
             CollectionView.Clear();
             CollectionSResultsView.Clear();
             TreeViewAll.ItemsSource = TreeViewSResult.ItemsSource = null;
-            Add_Info_Button.Content = "Add faculty...";
-            Delete_Button.Content = "Delete";
-            Modify_Button.Content = "Modify...";
+            Add_Info_Button.Content = "_Add faculty...";
+            Delete_Button.Content = "_Delete";
+            Modify_Button.Content = "_Modify...";
             Delete_All_Button.IsEnabled = false;
             Delete_All_Button.Opacity = 0.7;
             Delete_Button.IsEnabled = false;
             Delete_Button.Opacity = 0.7;
             Modify_Button.Opacity = 0.7;
             Modify_Button.IsEnabled = false;
+            SSListButton.IsEnabled = false;
+            SSListButton.Opacity = 0.7;
             AM_TB.Content = "";
+        }
+
+        private void ShowScoolarships(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem.GetType().Name == SelectedGroup.GetType().Name)
+            {
+                ScoolarshipList sl = new ScoolarshipList((GroupViewModel)SelectedItem);
+                sl.Owner = this;
+                sl.Resources["BorderColor"] = Resources["BorderColor"];
+                sl.Resources["ButtonColor"] = Resources["ButtonColor"];
+                sl.Resources["BGColor"] = Resources["BGColor"];
+                sl.Resources["TextColor"] = Resources["TextColor"];
+                sl.Resources["FontStyle"] = Resources["FontStyle"];
+                sl.Resources["FontFamily"] = Resources["FontFamily"];
+                sl.Resources["FontSizeSmall"] = Resources["FontSizeSmall"];
+                sl.Resources["FontSizeMedium"] = Resources["FontSizeMedium"];
+                sl.Resources["FontSizeLarge"] = Resources["FontSizeLarge"];
+
+                sl.Show();
+            }
         }
 
         private void Find(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -553,16 +606,20 @@ namespace StudentStorage.WPF.Views
                     if(hasStudRes)
                     {
                         fvm.Groups.Add(gvm);
+                        hasStudRes = false;
+                        hasGroupRes = true;
                         continue;
                     }
                     if (group.Name.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))
                     {
                         fvm.Groups.Add(gvm);
+                        hasGroupRes = true;
                     }
                 }
                 if(hasGroupRes || hasStudRes)
                 {
                     CollectionSResultsView.Add(fvm);
+                    hasGroupRes = false;
                     continue;
                 }
                 if (faculty.Name.ToLower().Contains(((System.Windows.Controls.TextBox)sender).Text.ToLower()))

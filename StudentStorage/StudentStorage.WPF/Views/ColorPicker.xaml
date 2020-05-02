@@ -21,8 +21,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="OK" Grid.Column="0" Content="OK" Margin="15" Click="OKClick" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}" />
-            <Button x:Name="Cancel" Grid.Column="1" Content="Cancel" Margin="15" Click="CancelClick" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
+            <Button x:Name="OK" Grid.Column="0" Content="_OK" Margin="15" Click="OKClick" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}" />
+            <Button x:Name="Cancel" Grid.Column="1" Content="_Cancel" Margin="15" Click="CancelClick" Background="{DynamicResource ButtonColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeSmall}"/>
         </Grid>
     </Grid>
 </Window>

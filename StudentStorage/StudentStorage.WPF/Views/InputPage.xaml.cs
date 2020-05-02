@@ -32,17 +32,18 @@ namespace StudentStorage.WPF.Views
             if(Mode == "Add")
             {
                 this.Title = "Add new faculty";
-                AddNextButton.Content = "Add next faculty";
-                AddButton.Content = "Save faculty";
+                AddNextButton.Content = "_Add next faculty";
+                AddButton.Content = "_Save faculty";
             }
 
             if(Mode == "Modify")
             {
                 this.Title = "Modify \"" + faculty.Name + "\" faculty";
                 AddNextButton.Visibility = Visibility.Hidden;
-                AddButton.Content = "Save faculty";
+                AddButton.Content = "_Save faculty";
                 NameField.Text = faculty.Name;
             }
+            NameField.Focus();
         }
 
         public InputPage(GroupViewModel group, string mode)
@@ -53,18 +54,19 @@ namespace StudentStorage.WPF.Views
             this.CurrentType = "Group";
             if (Mode == "Add")
             {
-                this.Title = "Add new group";
-                AddNextButton.Content = "Add next group";
-                AddButton.Content = "Save group";
+                this.Title = "Add new group to \"" + group.Parent.Name + "\"";
+                AddNextButton.Content = "_Add next group";
+                AddButton.Content = "_Save group";
             }
 
             if (Mode == "Modify")
             {
                 this.Title = "Modify \"" + group.Name + "\" group";
                 AddNextButton.Visibility = Visibility.Hidden;
-                AddButton.Content = "Save group";
+                AddButton.Content = "_Save group";
                 NameField.Text = group.Name;
             }
+            NameField.Focus();
         }
         private void AddOrModify()
         {
@@ -165,6 +167,16 @@ namespace StudentStorage.WPF.Views
                 AddButton.Opacity = 0.7;
                 AddNextButton.IsEnabled = false;
                 AddNextButton.Opacity = 0.7;
+            }
+        }
+
+        private void SelectText(object sender, RoutedEventArgs e)
+        {
+            var item = e.OriginalSource as UIElement;
+            if (item != null)
+            {
+                var textBox = (TextBox)item;
+                textBox.SelectAll();
             }
         }
     }

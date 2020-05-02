@@ -14,7 +14,7 @@
             </Label.Content>
         </Label>
 
-        <TextBox x:Name="NameField" TextChanged="ValueChanged" Grid.Row="5" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+        <TextBox x:Name="NameField" GotFocus="SelectText" TextChanged="ValueChanged" Grid.Row="5" Margin="5" Height="30" TextAlignment="Left" VerticalContentAlignment="Center" Background="{DynamicResource BGColor}" BorderBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
 
         <Grid Background="{DynamicResource BGColor}" Margin="35,10" Height="40">
             <Grid.ColumnDefinitions>
@@ -22,8 +22,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <xctk:DoubleUpDown x:Name="Mark" ValueChanged="ValueChanged" Grid.Column="0" Grid.Row="3" Margin="5" Watermark="Minimal mark" HorizontalContentAlignment="Left" Increment="0.2" Minimum="0" Maximum="100" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
-            <xctk:DoubleUpDown x:Name="Percent" ValueChanged="ValueChanged" Grid.Column="1" Grid.Row="3" Margin="5" Watermark="Percent of students" HorizontalContentAlignment="Left" Increment="0.5" Minimum="0" Maximum="100" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+            <xctk:DoubleUpDown x:Name="Mark" GotFocus="SelectText" ValueChanged="ValueChanged" Grid.Column="0" Grid.Row="3" Margin="5" Watermark="Minimal mark" HorizontalContentAlignment="Left" Increment="0.2" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
+            <xctk:DoubleUpDown x:Name="Percent" GotFocus="SelectText" ValueChanged="ValueChanged" Grid.Column="1" Grid.Row="3" Margin="5" Watermark="Percent of students" HorizontalContentAlignment="Left" Increment="0.5" Background="{DynamicResource BGColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}"/>
         </Grid>
         
         <Grid Height="50" VerticalAlignment="Bottom">
@@ -33,9 +33,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="AddNextButton" Grid.Column="0" IsEnabled="False" Opacity="0.7" VerticalContentAlignment="Center" Content="Add Next" Margin="5,10" Click="AddNext" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
-            <Button x:Name="AddButton" Grid.Column="1" IsEnabled="False" Opacity="0.7" VerticalContentAlignment="Center" Content="Save" Margin="5,10" Click="SaveCurrent" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
-            <Button x:Name="CancelButton" Grid.Column="2" VerticalContentAlignment="Center" Content="Cancel" Margin="5,10" Click="Cancel" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
+            <Button x:Name="AddNextButton" Grid.Column="0" IsEnabled="False" Opacity="0.7" VerticalContentAlignment="Center" Content="_Add Next" Margin="5,10" Click="AddNext" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
+            <Button x:Name="AddButton" Grid.Column="1" IsEnabled="False" Opacity="0.7" VerticalContentAlignment="Center" Content="_Save" Margin="5,10" Click="SaveCurrent" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
+            <Button x:Name="CancelButton" Grid.Column="2" VerticalContentAlignment="Center" Content="_Cancel" Margin="5,10" Click="Cancel" Background="{DynamicResource ButtonColor}" Foreground="{DynamicResource TextColor}" FontFamily="{DynamicResource FontFamily}" FontSize="{DynamicResource FontSizeMedium}" BorderBrush="{DynamicResource BorderColor}"/>
         </Grid>
     </StackPanel>
 </Window>
